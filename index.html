@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html id="htmlBackground">
+  <head>
+    <meta charset="utf-8">
+    <title>Spanzuratoarea</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+      <div class="inputSubmitUsername">
+        <form id="formUsername">
+          <input id="inputUsername" type="text" autocomplete="off" value="" placeholder="Introdu numele">
+          <button type="button"  onclick="nume()">Apasa</button>
+        </form>
+      </div>
+
+      <form class="nivele">
+          <input id="easy" type="radio" name="levels" value="easy" onclick="if(this.checked){easy()}" checked>
+          <label for="easy">Easy</label>
+          <input id="medium" type="radio" name="levels" value="medium" onclick="if(this.checked){medium()}">
+          <label for="medium">Medium</label>
+          <input id="hard" type="radio" name="levels" value="hard" onclick="if(this.checked){hard()}">
+          <label for="hard">Hard</label>
+      </form>
+
+      <div id="topBlock">
+          <img id="pozProfil" src="smiley.png" alt="flo">
+          <h1>Spanzuratoarea !!!</h1>
+          <br>
+          <div class="startJocul">
+               <button id="startJoc" type="button"  onclick="start()">Start joc</button>
+          </div>
+          <br>
+          <div class="inputSubmit">
+          <form class="form">
+              <input id="inputLitera" type="text" autocomplete="off" onfocus="this.value=''" value="" placeholder="Tasteaza o litera aici">
+              <button type="button" onclick="literaCheck()" name="button">Apasa</button>
+          </form>
+          </div>
+      <div class="textMijloc">
+              <div class="mesajSfarsit">
+                  <p id="mesajFinal">Tasteaza numele si alege dificultatea.</p>
+              </div>
+      </div>
+      <br><br>
+          <div class="word">
+              <p id="lettersWord"></p>
+              <img id="pozeJoc" src="smiley.png" alt="poz">
+          </div>
+    </div>
+    <audio id="audioSong">
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="applause">
+        <source src="applause.wav" type="audio/mpeg">
+    </audio>
+    <audio id="buzz">
+        <source src="buzz.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="positive">
+        <source src="positive.mp3" type="audio/mpeg">
+    </audio>
+
+<script type="text/javascript">
+
+  function nume(){
+    var x = document.getElementById('inputUsername').value;
+    name = x.toUpperCase();
+    document.querySelector("h1").innerHTML="Bine ai venit "+name+" !!!";
+    document.getElementById("formUsername").reset();
+    if (name === "FLORENTIN") {
+        document.getElementById('pozProfil').src="flo.jpg";
+       }
+    else if (name === "RALUCA") {
+           document.getElementById('pozProfil').src="ralu.jpg";
+          }
+    else if (name === "IOANA") {
+              document.getElementById('pozProfil').src="ioana.jpg";
+             }
+
+    }
+  var a = ["catel","abecedar","calendar","degete","soparla","girafa","marinar","scoala","prieten","masina","telecomanda","televizor","hanorac","telefon","tricou","maimuta","pisica","papagal","ecran","prieten","printesa"];
+  function start(){
+    ab = a.sort(()=>Math.random()-0.5);
+    b = a[0].toUpperCase();
+    linieIntrerupta = []
+    for (i of b){linieIntrerupta.push("_")};
+    document.querySelector("#lettersWord").innerHTML=linieIntrerupta;
+    document.querySelector("#mesajFinal").innerHTML="A inceput jocul "+name+", succes !!!";
+  }
+
+  function literaCheck(){
+      var x = (document.getElementById('inputLitera').value).toUpperCase();
+      linieIntrerupta2 = "";
+      adevar = false;
+      for (i in b) {
+        if (x === b[i]) {
+          adevar = true;
+          linieIntrerupta[i] = b[i];
+        }
+      }
+      for (i of linieIntrerupta){
+        linieIntrerupta2 += i;
+      }
+
+      if (adevar) {
+        document.querySelector("#mesajFinal").innerHTML="Ai ghicit o litera !!!";
+        document.getElementById('pozeJoc').src="Smiley-ok.png";
+        myMusic = document.getElementById("positive");
+        myMusic.play();
+      }else {
+        document.querySelector("#mesajFinal").innerHTML="Nu ai ghicit, mai incearca!";
+        document.getElementById('pozeJoc').src="smiley-sad.png";
+        myMusic = document.getElementById("buzz");
+        myMusic.play();
+      }
+      if (linieIntrerupta2 === b) {
+        document.querySelector("#mesajFinal").innerHTML="Bravo !!! Ai reusit !!!";
+        document.getElementById('pozeJoc').src="smiley-Congratulations.jpg";
+        myMusic = document.getElementById("applause");
+        myMusic.play();
+      }
+      document.querySelector("#lettersWord").innerHTML=linieIntrerupta;
+  }
+  function easy(){
+    yy = document.getElementById('easy').value;
+    document.querySelector("#mesajFinal").innerHTML=yy;
+  }
+  function medium(){
+    zz = document.getElementById('medium').value;
+    document.querySelector("#mesajFinal").innerHTML=zz;
+  }
+  function hard(){
+    xx = document.getElementById('hard').value;
+    document.querySelector("#mesajFinal").innerHTML=xx;
+  }
+
+
+</script>
+
+
+  </body>
+</html>
