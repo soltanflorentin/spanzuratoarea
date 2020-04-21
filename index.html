@@ -29,8 +29,10 @@
 
       <div id="topBlock">
           <img id="pozProfil" src="smiley.png" alt="flo">
+          <img id="emoji_sex" src="smiley.png" alt="emoji">
           <h1>Spanzuratoarea !!!</h1>
-          <br>
+
+
           <div class="startJocul">
                <button id="startJoc" type="button"  onclick="start()">Start joc</button>
           </div>
@@ -80,12 +82,15 @@
     document.getElementById("formUsername").reset();
     if (name === "FLORENTIN") {
         document.getElementById('pozProfil').src="flo.jpg";
+        document.getElementById('emoji_sex').src="emoji_boy.png";
        }
     else if (name === "RALUCA") {
            document.getElementById('pozProfil').src="ralu.jpg";
+           document.getElementById('emoji_sex').src="emoji_girl.png";
           }
     else if (name === "IOANA" | name === "OANA") {
               document.getElementById('pozProfil').src="ioana.JPG";
+              document.getElementById('emoji_sex').src="emoji_girl.png";
              }
 
     }
