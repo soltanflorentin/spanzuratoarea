@@ -20,10 +20,14 @@ h1 {
   margin-bottom: 0px;
   text-align: center;
 }
-#emoji_sex{
+#emoji_sex {
   height: 130px;
   width: 130px;
   float: right;
+}
+#inima {
+  height: 130px;
+  width: 130px;
 }
 .nivele{
   margin-left: 10%;

@@ -53,7 +53,9 @@
           <div class="word">
               <p id="lettersWord"></p>
               <img id="pozeJoc" src="smiley.png" alt="poz">
+              <img id="inima" src="#" alt="x">
           </div>
+
     </div>
     <audio id="audioSong">
         <source src="music.mp3" type="audio/mpeg">
@@ -92,8 +94,8 @@
               document.getElementById('pozProfil').src="ioana.JPG";
               document.getElementById('emoji_sex').src="emoji_girl.png";
              }
-
     }
+
   var a = ["catel","abecedar","calendar","degete","soparla","girafa","marinar","scoala","prieten","masina","telecomanda","televizor","hanorac","telefon","tricou","maimuta","pisica","papagal","ecran","prieten","printesa"];
   function start(){
     gameOver = false;
@@ -144,6 +146,7 @@
       if (linieIntrerupta2 === b) {
         document.querySelector("#mesajFinal").innerHTML="Bravo !!! Ai reusit !!!";
         document.getElementById('pozeJoc').src="smiley-Congratulations.jpg";
+        document.getElementById('inima').src="hard.jpg";
         myMusic = document.getElementById("applause");
         myMusic.play();
       }
