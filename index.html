@@ -14,13 +14,18 @@
       </div>
 
       <form class="nivele">
-          <input id="easy" type="radio" name="levels" value="easy" onclick="if(this.checked){easy()}" checked>
+          <input id="easy" type="radio" name="levels" value="easy" onclick="if(this.checked){easy()}";>
           <label for="easy">Easy</label>
-          <input id="medium" type="radio" name="levels" value="medium" onclick="if(this.checked){medium()}">
+          <input id="medium" type="radio" name="levels" value="medium" onclick="if(this.checked){medium()}";>
           <label for="medium">Medium</label>
-          <input id="hard" type="radio" name="levels" value="hard" onclick="if(this.checked){hard()}">
+          <input id="hard" type="radio" name="levels" value="hard" onclick="if(this.checked){hard()}";>
           <label for="hard">Hard</label>
       </form>
+      <div class="">
+
+      </div>
+
+
 
       <div id="topBlock">
           <img id="pozProfil" src="smiley.png" alt="flo">
@@ -39,6 +44,7 @@
       <div class="textMijloc">
               <div class="mesajSfarsit">
                   <p id="mesajFinal">Tasteaza numele si alege dificultatea.</p>
+                  <p id="incercari"></p>
               </div>
       </div>
       <br><br>
@@ -60,6 +66,11 @@
         <source src="positive.mp3" type="audio/mpeg">
     </audio>
 
+    <form>
+    <input id="test" type="checkbox" value="easy" onclick="if(this.checked){test()}">
+    </form>
+
+
 <script type="text/javascript">
 
   function nume(){
@@ -73,19 +84,22 @@
     else if (name === "RALUCA") {
            document.getElementById('pozProfil').src="ralu.jpg";
           }
-    else if (name === "IOANA") {
+    else if (name === "IOANA" | name === "OANA") {
               document.getElementById('pozProfil').src="ioana.JPG";
              }
 
     }
   var a = ["catel","abecedar","calendar","degete","soparla","girafa","marinar","scoala","prieten","masina","telecomanda","televizor","hanorac","telefon","tricou","maimuta","pisica","papagal","ecran","prieten","printesa"];
   function start(){
+    gameOver = false;
+    incercari = 10;
     ab = a.sort(()=>Math.random()-0.5);
     b = a[0].toUpperCase();
     linieIntrerupta = []
     for (i of b){linieIntrerupta.push("_")};
     document.querySelector("#lettersWord").innerHTML=linieIntrerupta;
     document.querySelector("#mesajFinal").innerHTML="A inceput jocul "+name+", succes !!!";
+    document.querySelector("#incercari").innerHTML="Ai "+incercari+" incercari.";
   }
 
   function literaCheck(){
@@ -110,30 +124,36 @@
       }else {
         document.querySelector("#mesajFinal").innerHTML="Nu ai ghicit, mai incearca!";
         document.getElementById('pozeJoc').src="smiley-sad.png";
+        incercari--;
+        if (incercari === 0) {
+          document.querySelector("#mesajFinal").innerHTML="Ai pierdut, cuvantul era:";
+          document.querySelector("#incercari").innerHTML=" ";
+          gameOver = true;
+        }else{
+        document.querySelector("#incercari").innerHTML="Mai ai "+incercari+" incercari.";
+      }
         myMusic = document.getElementById("buzz");
         myMusic.play();
       }
+
       if (linieIntrerupta2 === b) {
         document.querySelector("#mesajFinal").innerHTML="Bravo !!! Ai reusit !!!";
         document.getElementById('pozeJoc').src="smiley-Congratulations.jpg";
         myMusic = document.getElementById("applause");
         myMusic.play();
       }
-      document.querySelector("#lettersWord").innerHTML=linieIntrerupta;
-  }
-  function easy(){
-    yy = document.getElementById('easy').value;
-    document.querySelector("#mesajFinal").innerHTML=yy;
-  }
-  function medium(){
-    zz = document.getElementById('medium').value;
-    document.querySelector("#mesajFinal").innerHTML=zz;
-  }
-  function hard(){
-    xx = document.getElementById('hard').value;
-    document.querySelector("#mesajFinal").innerHTML=xx;
+      if (gameOver){
+          document.querySelector("#lettersWord").innerHTML=b;
+          setTimeout(() => { start(); }, 5000);
+      }else {
+          document.querySelector("#lettersWord").innerHTML=linieIntrerupta;
+      }
   }
 
+  function test(){
+    var rr = document.getElementById('test').value;
+    document.querySelector("#mesajFinal").innerHTML="flo";
+  }
 
 </script>
 

@@ -63,8 +63,14 @@ h1 {
   font-size: 60px;
 
 }
-#mesajFinal{
+#mesajFinal {
   font-size: 45px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+#incercari{
+  font-size: 30px;
+  font-weight: bold;
 }
 #pozeJoc{
   height: 130px;
