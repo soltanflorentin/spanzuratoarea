@@ -9,17 +9,17 @@
       <div class="inputSubmitUsername">
         <form id="formUsername">
           <input id="inputUsername" type="text" autocomplete="off" value="" placeholder="Introdu numele">
-          <button type="button"  onclick="nume()">Apasa</button>
+          <button id="button_sus" type="button"  onclick="nume()">Apasa</button>
         </form>
       </div>
 
       <form class="nivele">
-          <input id="easy" type="radio" name="levels" value="easy" onclick="if(this.checked){easy()}";>
-          <label for="easy">Easy</label>
-          <input id="medium" type="radio" name="levels" value="medium" onclick="if(this.checked){medium()}";>
-          <label for="medium">Medium</label>
-          <input id="hard" type="radio" name="levels" value="hard" onclick="if(this.checked){hard()}";>
-          <label for="hard">Hard</label>
+          <input id="easy" type="radio" name="levels" value="easy" checked>
+          <label for="easy" title="Ai 15 incercari">Easy</label>
+          <input id="medium" type="radio" name="levels" value="medium">
+          <label for="medium" title="Ai 10 incercari">Medium</label>
+          <input id="hard" type="radio" name="levels" value="hard">
+          <label for="hard" title="Ai 5 incercari">Hard</label>
       </form>
       <div class="">
 
@@ -70,12 +70,42 @@
         <source src="positive.mp3" type="audio/mpeg">
     </audio>
 
-    <form>
-    <input id="test" type="checkbox" value="easy" onclick="if(this.checked){test()}">
+    <div class="domenii">
+    <form class="nivele">
+        <p>Domenii</p>
+        <div class="domeniuFloat">
+        <input class="domeniu_individual" id="diverse" type="radio" name="levels" value="diverse" checked>
+        <label class="domeniu_individual" for="diverse" title="Ai 15 incercari">Diverse</label>
+      </div>
+      <div class="domeniuFloat">
+        <input class="domeniu_individual" id="orase" type="radio" name="levels" value="orase">
+        <label class="domeniu_individual" for="orase" title="Ai 5 incercari">Orase</label>
+        </div>
+        <div class="domeniuFloat">
+        <input class="domeniu_individual" id="tari" type="radio" name="levels" value="tari">
+        <label class="domeniu_individual" for="tari" title="Ai 10 incercari">Tari</label>
+        </div>
+        <div class="domeniuFloat">
+        <input class="domeniu_individual" id="nume" type="radio" name="levels" value="nume">
+        <label class="domeniu_individual" for="nume" title="Ai 5 incercari">Nume</label>
+        </div>
+        <div class="domeniuFloat">
+        <input class="domeniu_individual" id="animale" type="radio" name="levels" value="animale">
+        <label class="domeniu_individual" for="animale" title="Ai 5 incercari">Animale</label>
+        </div>
+        <div class="domeniuFloat">
+        <input class="domeniu_individual" id="toate" type="radio" name="levels" value="toate">
+        <label class="domeniu_individual" for="animale" title="Ai 5 incercari">Toate</label>
+        </div>
     </form>
+  </div>
 
+  <p id="test_final"></p>
 
 <script type="text/javascript">
+
+
+
 
   function nume(){
     var x = document.getElementById('inputUsername').value;
@@ -95,73 +125,156 @@
               document.getElementById('emoji_sex').src="emoji_girl.png";
              }
     }
+function verifica(x){
+      var diverse = ["masina","aeroport","avion","copac","prieten","printesa","apartament","frunze","patinuar"];
+      var orase = ["bucuresti","londra","brasov","mangalia","constanta","sibiu","braila","galati","paris","dubai","abudabi","roma","milano","miami"];
+      var tari = ["italia","franta","romania","anglia","korea","china","japonia","america","germania","rusia","bulgaria","turcia","spania","mexic","argentina","norvegia","ungaria","moldova","serbia","ucraina","australia"];
+      var nume = ["florentin","raluca","calin","elena","stefania","roxana","maria","antonia","elizabeta","george","razvan","tudor","ioana","cristi","adrian","delia","miruna","matei","sebastian","patrik","ionut","sorin","vasile","sara","mihai","mihaela","madalina","cristina"];
+      var animale = ["catel","soparla","girafa","maimuta","pisica","vaca","oaie","tigru","rinocer","elefant","sarpe","dinozaur","pantera","hiena","broasca","vulpe","crocodil","arici","antilopa","bursuc","cangur","camila","castor","foca","hipopotam","iepure","iguana","jaguar","pinguin","puma","scons","scorpion","soarece","veverita","zebra",""];
+      if (x === "orase"){return orase;}
+      else if (x === "tari") {return tari;}
+      else if (x === "nume") {return nume;}
+      else if (x === "animale") {return animale;}
+      else if (x === "diverse") {return diverse;}
+      else {return diverse;}
 
-  var a = ["catel","abecedar","calendar","degete","soparla","girafa","marinar","scoala","prieten","masina","telecomanda","televizor","hanorac","telefon","tricou","maimuta","pisica","papagal","ecran","prieten","printesa"];
+}
+
+function cupaWin(){
+        document.querySelector("#test_final").innerHTML="Bravo !!! Ai reusit sa termini jocul !!!";
+        document.querySelector("#incercari").innerHTML="bau bau";
+        document.querySelector("#testes_final").innerHTML="bau bau";
+        document.getElementById('pozeJoc').src="smiley-Congratulations.jpg";
+        document.getElementById('inima').src="cupa.jpg";
+        myMusic = document.getElementById("applause");
+        myMusic.play();
+        myMusic.play();
+        winConsecutiv = 0;
+        setTimeout(() => { document.getElementById('easy').checked=true; start(); }, 5000);
+}
+
+winConsecutiv = 0;
+lose_Consecutiv =0;
+cupa = false;
+
   function start(){
-    gameOver = false;
-    incercari = 10;
-    ab = a.sort(()=>Math.random()-0.5);
-    b = a[0].toUpperCase();
-    linieIntrerupta = []
-    for (i of b){linieIntrerupta.push("_")};
-    document.querySelector("#lettersWord").innerHTML=linieIntrerupta;
-    document.querySelector("#mesajFinal").innerHTML="A inceput jocul "+name+", succes !!!";
-    document.querySelector("#incercari").innerHTML="Ai "+incercari+" incercari.";
+        gameOver = false;
+        document.getElementById('pozeJoc').src="smiley.png";
+
+        if (winConsecutiv===2){
+            if(document.getElementById('easy').checked){
+                document.getElementById('medium').checked=true;
+              }else if (document.getElementById('medium').checked) {
+                document.getElementById('hard').checked=true;
+              }else {
+                cupa = true;
+              }
+            winConsecutiv = 0;
+        }
+        if (lose_Consecutiv===2){
+            if(document.getElementById('hard').checked){
+                document.getElementById('medium').checked=true;
+              }else if (document.getElementById('medium').checked) {
+                document.getElementById('easy').checked=true;
+              }else {
+                document.getElementById('easy').checked=true;
+              }
+            lose_Consecutiv = 0;
+        }
+
+
+
+        if (document.getElementById('medium').checked){
+          dificulty = "Medium";
+          incercari = 10
+        }else if (document.getElementById('hard').checked){
+          dificulty="Hard";
+          incercari = 5
+        }else {
+          dificulty = "Easy";
+          incercari = 15;
+        }
+
+
+        if (document.getElementById('orase').checked){
+          domeniu = verifica("orase");
+        }else if (document.getElementById('tari').checked){
+          domeniu = verifica("tari");
+        }else if (document.getElementById('nume').checked){
+          domeniu = verifica("nume");
+        }else if (document.getElementById('animale').checked){
+          domeniu = verifica("animale");
+        }else if (document.getElementById('diverse').checked){
+          domeniu = verifica("diverse");
+        }else if (document.getElementById('toate').checked){
+          domeniu = verifica("toate");
+        }
+
+        ab = domeniu.sort(()=>Math.random()-0.5);
+        b = ab[0].toUpperCase();
+        linieIntrerupta = []
+        for (i of b){linieIntrerupta.push("_")};
+        document.querySelector("#lettersWord").innerHTML=linieIntrerupta;
+        document.querySelector("#mesajFinal").innerHTML="A inceput jocul "+name+", succes !!!";
+        document.querySelector("#incercari").innerHTML="Esti pe "+dificulty+". Ai "+incercari+" incercari.";
   }
 
   function literaCheck(){
-      var x = (document.getElementById('inputLitera').value).toUpperCase();
-      linieIntrerupta2 = "";
-      adevar = false;
-      for (i in b) {
-        if (x === b[i]) {
-          adevar = true;
-          linieIntrerupta[i] = b[i];
-        }
-      }
-      for (i of linieIntrerupta){
-        linieIntrerupta2 += i;
-      }
+          var x = (document.getElementById('inputLitera').value).toUpperCase();
+          linieIntrerupta2 = "";
+          adevar = false;
+          for (i in b) {
+            if (x === b[i]) {
+              adevar = true;
+              linieIntrerupta[i] = b[i];
+            }
+          }
+          for (i of linieIntrerupta){
+            linieIntrerupta2 += i;
+          }
 
-      if (adevar) {
-        document.querySelector("#mesajFinal").innerHTML="Ai ghicit o litera !!!";
-        document.getElementById('pozeJoc').src="Smiley-ok.png";
-        myMusic = document.getElementById("positive");
-        myMusic.play();
-      }else {
-        document.querySelector("#mesajFinal").innerHTML="Nu ai ghicit, mai incearca!";
-        document.getElementById('pozeJoc').src="smiley-sad.png";
-        incercari--;
-        if (incercari === 0) {
-          document.querySelector("#mesajFinal").innerHTML="Ai pierdut, cuvantul era:";
-          document.querySelector("#incercari").innerHTML=" ";
-          gameOver = true;
-        }else{
-        document.querySelector("#incercari").innerHTML="Mai ai "+incercari+" incercari.";
-      }
-        myMusic = document.getElementById("buzz");
-        myMusic.play();
-      }
+          if (adevar) {
+            document.querySelector("#mesajFinal").innerHTML="Ai ghicit o litera !!!";
+            document.getElementById('pozeJoc').src="Smiley-ok.png";
+            document.querySelector("#incercari").innerHTML="Mai ai "+incercari+" incercari.";
+            myMusic = document.getElementById("positive");
+            myMusic.play();
+          }else {
+            document.querySelector("#mesajFinal").innerHTML="Nu ai ghicit, mai incearca!";
+            document.getElementById('pozeJoc').src="smiley-sad.png";
+            incercari--;
+            if (incercari === 0) {
+              document.querySelector("#mesajFinal").innerHTML="Ai pierdut, cuvantul era:";
+              document.querySelector("#incercari").innerHTML=" ";
+              gameOver = true;
+            }else{
+            document.querySelector("#incercari").innerHTML="Mai ai "+incercari+" incercari.";
+          }
+            myMusic = document.getElementById("buzz");
+            myMusic.play();
+          }
 
-      if (linieIntrerupta2 === b) {
-        document.querySelector("#mesajFinal").innerHTML="Bravo !!! Ai reusit !!!";
-        document.getElementById('pozeJoc').src="smiley-Congratulations.jpg";
-        document.getElementById('inima').src="hard.jpg";
-        myMusic = document.getElementById("applause");
-        myMusic.play();
-      }
-      if (gameOver){
-          document.querySelector("#lettersWord").innerHTML=b;
-          setTimeout(() => { start(); }, 5000);
-      }else {
-          document.querySelector("#lettersWord").innerHTML=linieIntrerupta;
-      }
+          if (linieIntrerupta2 === b) {
+              winConsecutiv++;
+              lose_Consecutiv = 0;
+              document.querySelector("#mesajFinal").innerHTML="Bravo !!! Ai reusit !!!";
+              document.querySelector("#incercari").innerHTML=" ";
+              document.getElementById('pozeJoc').src="smiley-Congratulations.jpg";
+              document.getElementById('inima').src="hard.jpg";
+              myMusic = document.getElementById("applause");
+              myMusic.play();
+              setTimeout(() => { start(); }, 6000);
+          }
+          if (gameOver){
+              document.querySelector("#lettersWord").innerHTML=b;
+              lose_Consecutiv--;
+              winConsecutiv = 0;
+              setTimeout(() => {document.getElementById('easy').checked=true; start(); }, 5000);
+          }else {
+              document.querySelector("#lettersWord").innerHTML=linieIntrerupta;
+          }
   }
 
-  function test(){
-    var rr = document.getElementById('test').value;
-    document.querySelector("#mesajFinal").innerHTML="flo";
-  }
 
 </script>
 

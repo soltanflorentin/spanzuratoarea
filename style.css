@@ -32,6 +32,9 @@ h1 {
 .nivele{
   margin-left: 10%;
 }
+#easy{
+  text-decoration: none;
+}
 .startJocul {
   margin-left: 47%;
   margin-right: auto;
@@ -84,4 +87,14 @@ h1 {
 #pozeJoc{
   height: 130px;
   width: 140px;
+}
+.domenii {
+  margin-left: 136px;
+  width: 108px;
+  height: 214px;
+  border: 1px solid green;
+  position: absolute;
+}
+.domeniuFloat {
+  float: left;
 }
