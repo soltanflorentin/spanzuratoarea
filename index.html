@@ -5,7 +5,7 @@
     <title>Spanzuratoarea</title>
     <link rel="stylesheet" href="style.css">
   </head>
-  <body>
+  <body style="background: lightgrey;">
       <div class="inputSubmitUsername">
         <form id="formUsername">
           <input id="inputUsername" type="text" autocomplete="off" value="" placeholder="Introdu numele">
@@ -21,11 +21,6 @@
           <input id="hard" type="radio" name="levels" value="hard">
           <label for="hard" title="Ai 5 incercari">Hard</label>
       </form>
-      <div class="">
-
-      </div>
-
-
 
       <div id="topBlock">
           <img id="pozProfil" src="smiley.png" alt="flo">
@@ -37,22 +32,6 @@
                <button id="startJoc" type="button"  onclick="start()">Start joc</button>
           </div>
           <br>
-          <div class="inputSubmit">
-          
-          </div>
-      <div class="textMijloc">
-              <div class="mesajSfarsit">
-                  <p id="mesajFinal">Tasteaza numele si alege dificultatea.</p>
-                  <p id="incercari"></p>
-              </div>
-      </div>
-      <br><br>
-          <div class="word">
-              <p id="lettersWord"></p>
-              <img id="pozeJoc" src="smiley.png" alt="poz">
-              <img id="inima" src="#" alt="x">
-          </div>
-
           <div class="clasaLitereToate">
               <div class="clasaLitereAM">
                 <button class="litereAM" type="button" onclick="literaCheck('A')">A</button>
@@ -86,8 +65,21 @@
               </div>
           </div>
 
+          <div class="textMijloc">
+                  <div class="mesajSfarsit">
+                      <p id="mesajFinal">Tasteaza numele si alege dificultatea.</p>
+                      <p id="incercari"></p>
+                  </div>
+          </div>
+          <br><br>
+              <div class="word">
+                  <p id="lettersWord"></p>
+                  <img id="pozeJoc" src="smiley.png" alt="poz">
+                  <img id="inima" src="#" alt="x">
+              </div>
+     </div>
 
-    </div>
+
     <audio id="audioSong">
         <source src="music.mp3" type="audio/mpeg">
     </audio>
@@ -147,14 +139,20 @@
     if (name === "FLORENTIN") {
         document.getElementById('pozProfil').src="flo.jpg";
         document.getElementById('emoji_sex').src="emoji_boy.png";
+        document.getElementsByTagName('body')[0].style.background= "lightblue";
+        document.documentElement.style.setProperty('--culoareUser', 'blue');
        }
     else if (name === "RALUCA") {
            document.getElementById('pozProfil').src="ralu.jpg";
            document.getElementById('emoji_sex').src="emoji_girl.png";
+           document.getElementsByTagName('body')[0].style.background= "lightpink";
+           document.documentElement.style.setProperty('--culoareUser', '#FF0000');
           }
     else if (name === "IOANA" | name === "OANA") {
               document.getElementById('pozProfil').src="ioana.JPG";
               document.getElementById('emoji_sex').src="emoji_girl.png";
+              document.getElementsByTagName('body')[0].style.background= "lightpink";
+              document.documentElement.style.setProperty('--culoareUser', '#FF0000');
              }
     }
 function verifica(x){
@@ -252,7 +250,6 @@ cupa = false;
   }
 
   function literaCheck(x){
-          //var x = (document.getElementById('inputLitera').value).toUpperCase();
           linieIntrerupta2 = "";
           adevar = false;
           for (i in b) {
@@ -311,8 +308,6 @@ function test(x){
      document.querySelector("#lettersWord").innerHTML=x;
 }
 
-</script>
-
-
+     </script>
   </body>
 </html>

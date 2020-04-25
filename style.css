@@ -1,11 +1,11 @@
-html {
-  background: lightpink;
+:root{
+  --culoareUser: grey;
 }
 #formUsername{
   margin-left: 10%;
 }
 #topBlock {
-  border: 2px solid red;
+
   margin-left: 10%;
   margin-right: 10%;
   height: 18ex;
@@ -43,6 +43,22 @@ h1 {
 #startJoc{
   height: 30px;
   font-weight: bold;
+  border-radius: 8px;
+}
+.clasaLitereToate{
+  text-align: center;
+}
+.litereAM{
+  margin-right: 5px;
+  width: 35px;
+  font-weight: bold;
+  border-radius: 8px;
+}
+.litereAM:hover{
+  background: var(--culoareUser);
+}
+.clasaLitereNZ{
+  margin-top: 10px;
 }
 #mesaje {
   margin-left: 10%;
@@ -67,7 +83,7 @@ h1 {
   margin-left: 10%;
   margin-right: 10%;
   height: 20ex;
-  border: 1px solid blue;
+  ##border: 1px solid blue;
   text-align: center;
 }
 #lettersWord {
