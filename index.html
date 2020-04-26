@@ -9,7 +9,6 @@
       <div class="inputSubmitUsername">
         <form id="formUsername">
           <input id="inputUsername" type="text" autocomplete="off" value="" placeholder="Introdu numele">
-          <button id="button_sus" type="button"  onclick="nume()">Apasa</button>
         </form>
       </div>
 
@@ -29,7 +28,7 @@
 
 
           <div class="startJocul">
-               <button id="startJoc" type="button"  onclick="start()">Start joc</button>
+               <button id="startJoc" type="button"  onclick="nume()">Start joc</button>
           </div>
           <br>
           <div class="clasaLitereToate">
@@ -132,8 +131,16 @@
 
 
   function nume(){
-    var x = document.getElementById('inputUsername').value;
-    name = x.toUpperCase();
+    numeJucatori = {florentin: "man", raluca: "girl", ioana: "girl"};
+    numeInput= document.getElementById('inputUsername').value;
+    if (numeJucatori.hasOwnProperty(numeInput) === false){
+        document.querySelector("#mesajFinal").innerHTML="Upss! Nu ai introdus un nume valid.";
+        document.getElementById('pozeJoc').src="think_emoji4.jpg";
+        myMusic = document.getElementById("buzz");
+        myMusic.play();
+        nume();
+    };
+    name = numeInput.toUpperCase();
     document.querySelector("h1").innerHTML="Bine ai venit "+name+" !!!";
     document.getElementById("formUsername").reset();
     if (name === "FLORENTIN") {
@@ -154,7 +161,11 @@
               document.getElementsByTagName('body')[0].style.background= "lightpink";
               document.documentElement.style.setProperty('--culoareUser', '#FF0000');
              }
+    start();
     }
+
+
+
 function verifica(x){
       var diverse = ["masina","aeroport","avion","copac","prieten","printesa","apartament","frunze","patinuar"];
       var orase = ["bucuresti","londra","brasov","mangalia","constanta","sibiu","braila","galati","paris","dubai","abudabi","roma","milano","miami"];
@@ -187,10 +198,9 @@ winConsecutiv = 0;
 lose_Consecutiv =0;
 cupa = false;
 
-  function start(){
+function start(){
         gameOver = false;
         document.getElementById('pozeJoc').src="smiley.png";
-
         if (winConsecutiv===2){
             if(document.getElementById('easy').checked){
                 document.getElementById('medium').checked=true;
