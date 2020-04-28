@@ -5,13 +5,16 @@
     <title>Spanzuratoarea</title>
     <link rel="stylesheet" href="style.css">
   </head>
-  <body style="background: lightgrey;">
+  <body style="background: lightyellow;">
+    <div id="cadranJoc" style="background: lightgreen;">
       <div class="inputSubmitUsername">
         <form id="formUsername">
-          <input id="inputUsername" type="text" autocomplete="off" value="" placeholder="Introdu numele">
+          <input id="inputUsername" type="text" autocomplete="off" value="" placeholder="Username">
+          <br>
+          <input id="inputPassword" type="password" value="" placeholder="Password">
         </form>
       </div>
-
+      <br>
       <form class="nivele">
           <input id="easy" type="radio" name="levels" value="easy" checked>
           <label for="easy" title="Ai 15 incercari">Easy</label>
@@ -20,11 +23,11 @@
           <input id="hard" type="radio" name="levels" value="hard">
           <label for="hard" title="Ai 5 incercari">Hard</label>
       </form>
-
+      <br>
       <div id="topBlock">
           <img id="pozProfil" src="smiley.png" alt="flo">
           <img id="emoji_sex" src="smiley.png" alt="emoji">
-          <h1>Spanzuratoarea !!!</h1>
+          <h1>Ghiceste cuvantul !</h1>
 
 
           <div class="startJocul">
@@ -33,68 +36,55 @@
           <br>
           <div class="clasaLitereToate">
               <div class="clasaLitereAM">
-                <button class="litereAM" type="button" onclick="literaCheck('A')">A</button>
-                <button class="litereAM" type="button" onclick="literaCheck('B')">B</button>
-                <button class="litereAM" type="button" onclick="literaCheck('C')">C</button>
-                <button class="litereAM" type="button" onclick="literaCheck('D')">D</button>
-                <button class="litereAM" type="button" onclick="literaCheck('E')">E</button>
-                <button class="litereAM" type="button" onclick="literaCheck('F')">F</button>
-                <button class="litereAM" type="button" onclick="literaCheck('G')">G</button>
-                <button class="litereAM" type="button" onclick="literaCheck('H')">H</button>
-                <button class="litereAM" type="button" onclick="literaCheck('I')">I</button>
-                <button class="litereAM" type="button" onclick="literaCheck('J')">J</button>
-                <button class="litereAM" type="button" onclick="literaCheck('K')">K</button>
-                <button class="litereAM" type="button" onclick="literaCheck('L')">L</button>
-                <button class="litereAM" type="button" onclick="literaCheck('M')">M</button>
+                <button id="a" class="litereAM" name="litera" type="button" onclick="literaCheck('A')">A</button>
+                <button id="b" class="litereAM" name="litera" type="button" onclick="literaCheck('B')">B</button>
+                <button id="c" class="litereAM" name="litera" type="button" onclick="literaCheck('C')">C</button>
+                <button id="d" class="litereAM" name="litera" type="button" onclick="literaCheck('D')">D</button>
+                <button id="e" class="litereAM" name="litera" type="button" onclick="literaCheck('E')">E</button>
+                <button id="f" class="litereAM" name="litera" type="button" onclick="literaCheck('F')">F</button>
+                <button id="g" class="litereAM" name="litera" type="button" onclick="literaCheck('G')">G</button>
+                <button id="h" class="litereAM" name="litera" type="button" onclick="literaCheck('H')">H</button>
+                <button id="i" class="litereAM" name="litera" type="button" onclick="literaCheck('I')">I</button>
+                <button id="j" class="litereAM" name="litera" type="button" onclick="literaCheck('J')">J</button>
+                <button id="k" class="litereAM" name="litera" type="button" onclick="literaCheck('K')">K</button>
+                <button id="l" class="litereAM" name="litera" type="button" onclick="literaCheck('L')">L</button>
+                <button id="m" class="litereAM" name="litera" type="button" onclick="literaCheck('M')">M</button>
               </div>
               <div class="clasaLitereNZ">
-                <button class="litereAM" type="button" onclick="literaCheck('N')">N</button>
-                <button class="litereAM" type="button" onclick="literaCheck('O')">O</button>
-                <button class="litereAM" type="button" onclick="literaCheck('P')">P</button>
-                <button class="litereAM" type="button" onclick="literaCheck('Q')">Q</button>
-                <button class="litereAM" type="button" onclick="literaCheck('R')">R</button>
-                <button class="litereAM" type="button" onclick="literaCheck('S')">S</button>
-                <button class="litereAM" type="button" onclick="literaCheck('T')">T</button>
-                <button class="litereAM" type="button" onclick="literaCheck('U')">U</button>
-                <button class="litereAM" type="button" onclick="literaCheck('V')">V</button>
-                <button class="litereAM" type="button" onclick="literaCheck('W')">W</button>
-                <button class="litereAM" type="button" onclick="literaCheck('X')">X</button>
-                <button class="litereAM" type="button" onclick="literaCheck('Y')">Y</button>
-                <button class="litereAM" type="button" onclick="literaCheck('Z')">Z</button>
+                <button id="n" class="litereAM" name="litera" type="button" onclick="literaCheck('N')">N</button>
+                <button id="o" class="litereAM" name="litera" type="button" onclick="literaCheck('O')">O</button>
+                <button id="p" class="litereAM" name="litera" type="button" onclick="literaCheck('P')">P</button>
+                <button id="q" class="litereAM" name="litera" type="button" onclick="literaCheck('Q')">Q</button>
+                <button id="r" class="litereAM" name="litera" type="button" onclick="literaCheck('R')">R</button>
+                <button id="s" class="litereAM" name="litera" type="button" onclick="literaCheck('S')">S</button>
+                <button id="t" class="litereAM" name="litera" type="button" onclick="literaCheck('T')">T</button>
+                <button id="u" class="litereAM" name="litera" type="button" onclick="literaCheck('U')">U</button>
+                <button id="v" class="litereAM" name="litera" type="button" onclick="literaCheck('V')">V</button>
+                <button id="w" class="litereAM" name="litera" type="button" onclick="literaCheck('W')">W</button>
+                <button id="x" class="litereAM" name="litera" type="button" onclick="literaCheck('X')">X</button>
+                <button id="y" class="litereAM" name="litera" type="button" onclick="literaCheck('Y')">Y</button>
+                <button id="z" class="litereAM" name="litera" type="button" onclick="literaCheck('Z')">Z</button>
               </div>
           </div>
 
           <div class="textMijloc">
                   <div class="mesajSfarsit">
-                      <p id="mesajFinal">Tasteaza numele si alege dificultatea.</p>
+                      <p id="mesajFinal">Tasteaza numele si parola, dificultatea si domeniul, apoi apasa Start joc!</p>
                       <p id="incercari"></p>
                   </div>
           </div>
           <br><br>
               <div class="word">
                   <p id="lettersWord"></p>
-                  <img id="pozeJoc" src="smiley.png" alt="poz">
-                  <img id="inima" src="#" alt="x">
+
+                  <!--img id="inima" src="#" alt="x"-->
               </div>
+              <img id="pozeJoc" src="smiley.png" alt="poz">
      </div>
-
-
-    <audio id="audioSong">
-        <source src="music.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="applause">
-        <source src="applause.wav" type="audio/mpeg">
-    </audio>
-    <audio id="buzz">
-        <source src="buzz.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="positive">
-        <source src="positive.mp3" type="audio/mpeg">
-    </audio>
 
     <div class="domenii">
     <form class="nivele">
-        <p><b><ins>Domenii</ins></b></p>
+        <p class="titluDomenii"><b><ins>Domenii</ins></b></p>
         <div class="domeniuFloat">
         <input class="domeniu_individual" id="diverse" type="radio" name="levels" value="diverse" checked>
         <label class="domeniu_individual" for="diverse" title="Ai 15 incercari">Diverse</label>
@@ -119,56 +109,92 @@
         <input class="domeniu_individual" id="toate" type="radio" name="levels" value="toate">
         <label class="domeniu_individual" for="animale" title="Ai 5 incercari">Toate</label>
         </div>
-    </form>
-  </div>
+     </form>
+   </div>
+</div>
+
+  <audio id="audioSong">
+      <source src="music.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="applause">
+      <source src="applause.wav" type="audio/mpeg">
+  </audio>
+  <audio id="buzz">
+      <source src="buzz_scurt.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="positive">
+      <source src="positive.mp3" type="audio/mpeg">
+  </audio>
 
 
   <p id="test_final"></p>
 
+
+
+
+
+
 <script type="text/javascript">
 
 
-
+gameRunning = false;
+function userAndPassword(x){
+      document.querySelector("#mesajFinal").innerHTML=x;
+      document.getElementById('pozeJoc').src="smiley-sad.png";
+      myMusic = document.getElementById("buzz");
+      myMusic.play();
+      return "";
+}
 
   function nume(){
-    numeJucatori = {florentin: "man", raluca: "girl", ioana: "girl"};
+    if (gameRunning){
+      return "";
+    }
+    numeJucatori = {x:{password:"123"},florentin: {password: "123", scoreNow: 0, scoreTotal: 0, gender: "man"}, raluca: {password: "123", scoreNow: 0, scoreTotal: 0, gender: "girl"}, ioana: {password: "123", scoreNow: 0, scoreTotal: 0, gender: "girl"}};
     numeInput= document.getElementById('inputUsername').value;
+    passwordInput =document.getElementById('inputPassword').value;
+
     if (numeJucatori.hasOwnProperty(numeInput) === false){
-        document.querySelector("#mesajFinal").innerHTML="Upss! Nu ai introdus un nume valid.";
-        document.getElementById('pozeJoc').src="think_emoji4.jpg";
-        myMusic = document.getElementById("buzz");
-        myMusic.play();
-        nume();
+        userAndPassword("Numele nu este in baza de date.")
+        return "";
+    }else if (passwordInput != numeJucatori[numeInput].password) {
+        userAndPassword("Passwordul este incorect.")
+        return "";
     };
+    myMusic = document.getElementById("positive");
+    myMusic.play();
+    gameRunning = true;
     name = numeInput.toUpperCase();
     document.querySelector("h1").innerHTML="Bine ai venit "+name+" !!!";
     document.getElementById("formUsername").reset();
     if (name === "FLORENTIN") {
         document.getElementById('pozProfil').src="flo.jpg";
         document.getElementById('emoji_sex').src="emoji_boy.png";
-        document.getElementsByTagName('body')[0].style.background= "lightblue";
+        document.getElementById("cadranJoc").style.background= "lightblue";
         document.documentElement.style.setProperty('--culoareUser', 'blue');
        }
     else if (name === "RALUCA") {
            document.getElementById('pozProfil').src="ralu.jpg";
            document.getElementById('emoji_sex').src="emoji_girl.png";
-           document.getElementsByTagName('body')[0].style.background= "lightpink";
+           document.getElementById("cadranJoc").style.background= "lightpink";
            document.documentElement.style.setProperty('--culoareUser', '#FF0000');
           }
     else if (name === "IOANA" | name === "OANA") {
               document.getElementById('pozProfil').src="ioana.JPG";
               document.getElementById('emoji_sex').src="emoji_girl.png";
-              document.getElementsByTagName('body')[0].style.background= "lightpink";
+              document.getElementById("cadranJoc").style.background= "lightpink";
               document.documentElement.style.setProperty('--culoareUser', '#FF0000');
              }
-    start();
+
+    document.querySelector("#mesajFinal").innerHTML="   ";
+    setTimeout(() => { document.querySelector("h1").innerHTML="Gaseste cuvantul !"; start(); }, 3000);
     }
 
 
 
 function verifica(x){
-      var diverse = ["masina","aeroport","avion","copac","prieten","printesa","apartament","frunze","patinuar"];
-      var orase = ["bucuresti","londra","brasov","mangalia","constanta","sibiu","braila","galati","paris","dubai","abudabi","roma","milano","miami"];
+      var diverse = ["masina","aeroport","avion","copac","prieten","printesa","apartament","frunze","patinuar","bicicleta","trotineta","calculator","ecran","gradinita","escavator","parfum"];
+      var orase = ["bucuresti","londra","brasov","mangalia","constanta","sibiu","braila","galati","paris","dubai","abudabi","roma","milano","miami","sydney"];
       var tari = ["italia","franta","romania","anglia","korea","china","japonia","america","germania","rusia","bulgaria","turcia","spania","mexic","argentina","norvegia","ungaria","moldova","serbia","ucraina","australia"];
       var nume = ["florentin","raluca","calin","elena","stefania","roxana","maria","antonia","elizabeta","george","razvan","tudor","ioana","cristi","adrian","delia","miruna","matei","sebastian","patrik","ionut","sorin","vasile","sara","mihai","mihaela","madalina","cristina"];
       var animale = ["catel","soparla","girafa","maimuta","pisica","vaca","oaie","tigru","rinocer","elefant","sarpe","dinozaur","pantera","hiena","broasca","vulpe","crocodil","arici","antilopa","bursuc","cangur","camila","castor","foca","hipopotam","iepure","iguana","jaguar","pinguin","puma","scons","scorpion","soarece","veverita","zebra",""];
@@ -177,7 +203,7 @@ function verifica(x){
       else if (x === "nume") {return nume;}
       else if (x === "animale") {return animale;}
       else if (x === "diverse") {return diverse;}
-      else {return diverse;}
+      else {return diverse;} //Aici se pune domeniul toate care ar trebui sa le reuneasca pe toate.
 
 }
 
@@ -185,14 +211,27 @@ function cupaWin(){
         document.querySelector("#test_final").innerHTML="Bravo !!! Ai reusit sa termini jocul !!!";
         document.querySelector("#incercari").innerHTML="bau bau";
         document.querySelector("#testes_final").innerHTML="bau bau";
-        document.getElementById('pozeJoc').src="smiley-Congratulations.jpg";
-        document.getElementById('inima').src="cupa.jpg";
+        document.getElementById('pozeJoc').src="emoji_clap3.png";
+        //document.getElementById('inima').src="cupa.jpg";
         myMusic = document.getElementById("applause");
         myMusic.play();
         myMusic.play();
         winConsecutiv = 0;
         setTimeout(() => { document.getElementById('easy').checked=true; start(); }, 5000);
 }
+function litereColorate(oneOrAll, x, back, letter){
+      if (oneOrAll === 0) {
+        document.getElementById(x.toLowerCase()).style.background= back;
+        document.getElementById(x.toLowerCase()).style.color= letter;
+      }else{
+        litereAlfabet = document.getElementsByName('litera');
+        for (i of litereAlfabet){
+            i.style.color= letter;
+            i.style.background= back;
+        }
+      }
+      return "";
+};
 
 winConsecutiv = 0;
 lose_Consecutiv =0;
@@ -222,8 +261,6 @@ function start(){
             lose_Consecutiv = 0;
         }
 
-
-
         if (document.getElementById('medium').checked){
           dificulty = "Medium";
           incercari = 10
@@ -234,7 +271,6 @@ function start(){
           dificulty = "Easy";
           incercari = 15;
         }
-
 
         if (document.getElementById('orase').checked){
           domeniu = verifica("orase");
@@ -260,6 +296,14 @@ function start(){
   }
 
   function literaCheck(x){
+          backgroundLetter = document.getElementById(x.toLowerCase()).style.background;
+          if (backgroundLetter === "green" || backgroundLetter === "black"){
+              document.querySelector("#mesajFinal").innerHTML="Ai mai apasat pe "+x;
+              document.getElementById('pozeJoc').src="smiley-sad.png";
+              myMusic = document.getElementById("buzz");
+              myMusic.play();
+              return "";
+          }
           linieIntrerupta2 = "";
           adevar = false;
           for (i in b) {
@@ -273,12 +317,14 @@ function start(){
           }
 
           if (adevar) {
+            litereColorate(0, x, "green", "white");
             document.querySelector("#mesajFinal").innerHTML="Ai ghicit o litera !!!";
-            document.getElementById('pozeJoc').src="Smiley-ok.png";
+            document.getElementById('pozeJoc').src="smiley.png";
             document.querySelector("#incercari").innerHTML="Mai ai "+incercari+" incercari.";
             myMusic = document.getElementById("positive");
             myMusic.play();
           }else {
+            litereColorate(0, x, "black", "white");
             document.querySelector("#mesajFinal").innerHTML="Nu ai ghicit, mai incearca!";
             document.getElementById('pozeJoc').src="smiley-sad.png";
             incercari--;
@@ -298,17 +344,17 @@ function start(){
               lose_Consecutiv = 0;
               document.querySelector("#mesajFinal").innerHTML="Bravo !!! Ai reusit !!!";
               document.querySelector("#incercari").innerHTML=" ";
-              document.getElementById('pozeJoc').src="smiley-Congratulations.jpg";
-              document.getElementById('inima').src="hard.jpg";
+              document.getElementById('pozeJoc').src="emoji_clap3.png";
+              //document.getElementById('inima').src="hard.jpg";
               myMusic = document.getElementById("applause");
               myMusic.play();
-              setTimeout(() => { start(); }, 6000);
+              setTimeout(() => {litereColorate(1, x, "white", "black"); start(); }, 6000);
           }
           if (gameOver){
               document.querySelector("#lettersWord").innerHTML=b;
               lose_Consecutiv--;
               winConsecutiv = 0;
-              setTimeout(() => {document.getElementById('easy').checked=true; start(); }, 5000);
+              setTimeout(() => {litereColorate(1, x, "white", "black"); document.getElementById('easy').checked=true; start(); }, 5000);
           }else {
               document.querySelector("#lettersWord").innerHTML=linieIntrerupta;
           }
@@ -316,6 +362,9 @@ function start(){
 
 function test(x){
      document.querySelector("#lettersWord").innerHTML=x;
+}
+function pauza(){
+  var popa = 0;
 }
 
      </script>

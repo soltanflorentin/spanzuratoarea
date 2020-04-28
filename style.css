@@ -1,13 +1,19 @@
 :root{
   --culoareUser: grey;
 }
-#formUsername{
-  margin-left: 10%;
-}
-#topBlock {
-
+#cadranJoc {
+  border: 10px solid black;
+  height: 420px;
   margin-left: 10%;
   margin-right: 10%;
+}
+#formUsername{
+  #margin-left: 10%;
+}
+#inputPassword {
+  float: left;
+}
+#topBlock {
   height: 18ex;
 }
 #pozProfil {
@@ -31,7 +37,9 @@ h1 {
   width: 130px;
 }
 .nivele{
-  margin-left: 10%;
+  float: right;
+  margin-top: -40px;
+  margin-right: 1%;
 }
 #easy{
   text-decoration: none;
@@ -49,13 +57,12 @@ h1 {
   text-align: center;
 }
 .litereAM{
-  margin-right: 5px;
-  width: 35px;
+  width: 33px;
   font-weight: bold;
   border-radius: 8px;
 }
 .litereAM:hover{
-  background: var(--culoareUser);
+  background: var(--culoareUser) !important;
   color: white;
 }
 #startJoc:hover{
@@ -66,15 +73,12 @@ h1 {
   margin-top: 10px;
 }
 #mesaje {
-  margin-left: 10%;
-  margin-right: 10%;
   height: 5ex;
   text-align: center;
   border: 1px solid green;
 }
 .textMijloc{
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-top: -35px;
   height: 5ex;
   text-align: center;
 }
@@ -85,34 +89,42 @@ h1 {
 }
 
 .word {
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-top: -50px;
   height: 20ex;
-  ##border: 1px solid blue;
   text-align: center;
 }
 #lettersWord {
-  font-size: 60px;
+  font-size: 50px;
 
 }
 #mesajFinal {
-  font-size: 45px;
+  font-weight: bold;
+  font-size: 35px;
   padding-top: 0px;
   padding-bottom: 0px;
 }
 #incercari{
-  font-size: 30px;
+  margin-top: -40px;
+  font-size: 25px;
   font-weight: bold;
 }
 #pozeJoc{
-  border-radius: 50%;
+  margin-top: -130px;
   height: 130px;
   width: 140px;
+  #float: right;
+  position: absolute;
+  right: 12%;
+}
+.titluDomenii {
+  margin-right: 15px;
+  margin-bottom: 5px;
 }
 .domenii {
-  margin-left: 136px;
-  width: 108px;
-  height: 214px;
+  top: 310px;
+  margin-left: 0px;
+  width: 90px;
+  height: 125px;
   border: 1px solid green;
   position: absolute;
 }
