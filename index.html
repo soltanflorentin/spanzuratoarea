@@ -14,6 +14,7 @@
           <input id="inputPassword" type="password" value="" placeholder="Password">
         </form>
       </div>
+
       <br>
       <form class="nivele">
           <input id="easy" type="radio" name="levels" value="easy" checked>
@@ -137,60 +138,6 @@
 <script type="text/javascript">
 
 
-gameRunning = false;
-function userAndPassword(x){
-      document.querySelector("#mesajFinal").innerHTML=x;
-      document.getElementById('pozeJoc').src="smiley-sad.png";
-      myMusic = document.getElementById("buzz");
-      myMusic.play();
-      return "";
-}
-
-  function nume(){
-    if (gameRunning){
-      return "";
-    }
-    numeJucatori = {x:{password:"123"},florentin: {password: "123", scoreNow: 0, scoreTotal: 0, gender: "man"}, raluca: {password: "123", scoreNow: 0, scoreTotal: 0, gender: "girl"}, ioana: {password: "123", scoreNow: 0, scoreTotal: 0, gender: "girl"}};
-    numeInput= document.getElementById('inputUsername').value;
-    passwordInput =document.getElementById('inputPassword').value;
-
-    if (numeJucatori.hasOwnProperty(numeInput) === false){
-        userAndPassword("Numele nu este in baza de date.")
-        return "";
-    }else if (passwordInput != numeJucatori[numeInput].password) {
-        userAndPassword("Passwordul este incorect.")
-        return "";
-    };
-    myMusic = document.getElementById("positive");
-    myMusic.play();
-    gameRunning = true;
-    name = numeInput.toUpperCase();
-    document.querySelector("h1").innerHTML="Bine ai venit "+name+" !!!";
-    document.getElementById("formUsername").reset();
-    if (name === "FLORENTIN") {
-        document.getElementById('pozProfil').src="flo.jpg";
-        document.getElementById('emoji_sex').src="emoji_boy.png";
-        document.getElementById("cadranJoc").style.background= "lightblue";
-        document.documentElement.style.setProperty('--culoareUser', 'blue');
-       }
-    else if (name === "RALUCA") {
-           document.getElementById('pozProfil').src="ralu.jpg";
-           document.getElementById('emoji_sex').src="emoji_girl.png";
-           document.getElementById("cadranJoc").style.background= "lightpink";
-           document.documentElement.style.setProperty('--culoareUser', '#FF0000');
-          }
-    else if (name === "IOANA" | name === "OANA") {
-              document.getElementById('pozProfil').src="ioana.JPG";
-              document.getElementById('emoji_sex').src="emoji_girl.png";
-              document.getElementById("cadranJoc").style.background= "lightpink";
-              document.documentElement.style.setProperty('--culoareUser', '#FF0000');
-             }
-
-    document.querySelector("#mesajFinal").innerHTML="   ";
-    setTimeout(() => { document.querySelector("h1").innerHTML="Gaseste cuvantul !"; start(); }, 3000);
-    }
-
-
 
 function verifica(x){
       var diverse = ["masina","aeroport","avion","copac","prieten","printesa","apartament","frunze","patinuar","bicicleta","trotineta","calculator","ecran","gradinita","escavator","parfum"];
@@ -208,9 +155,8 @@ function verifica(x){
 }
 
 function cupaWin(){
-        document.querySelector("#test_final").innerHTML="Bravo !!! Ai reusit sa termini jocul !!!";
         document.querySelector("#incercari").innerHTML="bau bau";
-        document.querySelector("#testes_final").innerHTML="bau bau";
+        document.querySelector("#test_final").innerHTML="bau bau";
         document.getElementById('pozeJoc').src="emoji_clap3.png";
         //document.getElementById('inima').src="cupa.jpg";
         myMusic = document.getElementById("applause");
@@ -232,13 +178,91 @@ function litereColorate(oneOrAll, x, back, letter){
       }
       return "";
 };
+function userAndPassword(x){
+      document.querySelector("#mesajFinal").innerHTML=x;
+      document.getElementById('pozeJoc').src="smiley-sad.png";
+      myMusic = document.getElementById("buzz");
+      myMusic.play();
+      return "";
+}
+
 
 winConsecutiv = 0;
 lose_Consecutiv =0;
 cupa = false;
+gameRunning = false; // daca suntem in timpul jocului
+butonStop = false; //butonul de quit game
+
+
+function nume(){
+
+    numeJucatori = {x:{password:"123"},florentin: {password: "123", scoreNow: 0, scoreTotal: 0, gender: "man"}, raluca: {password: "123", scoreNow: 0, scoreTotal: 0, gender: "girl"}, ioana: {password: "123", scoreNow: 0, scoreTotal: 0, gender: "girl"}};
+    numeInput= document.getElementById('inputUsername').value;
+    numeInput = numeInput.toLowerCase();
+    passwordInput =document.getElementById('inputPassword').value;
+
+    if (numeJucatori.hasOwnProperty(numeInput) === false){
+        userAndPassword("Numele nu este in baza de date.")
+        return "";
+    }else if (passwordInput != numeJucatori[numeInput].password) {
+        userAndPassword("Passwordul este incorect.")
+        return "";
+    };
+    myMusic = document.getElementById("positive");
+    myMusic.play();
+    name = numeInput.toUpperCase();
+    document.querySelector("h1").innerHTML="Bine ai venit "+name+" !!!";
+    document.getElementById("formUsername").reset();
+    if (name === "FLORENTIN") {
+        document.getElementById('pozProfil').src="flo.jpg";
+        document.getElementById('emoji_sex').src="emoji_boy.png";
+        document.getElementById("cadranJoc").style.background= "lightblue";
+        document.documentElement.style.setProperty('--culoareUser', 'blue');
+       }
+    else if (name === "RALUCA") {
+           document.getElementById('pozProfil').src="ralu.jpg";
+           document.getElementById('emoji_sex').src="emoji_girl.png";
+           document.getElementById("cadranJoc").style.background= "lightpink";
+           document.documentElement.style.setProperty('--culoareUser', '#FF0000');
+          }
+    else if (name === "IOANA" | name === "OANA") {
+              document.getElementById('pozProfil').src="ioana.JPG";
+              document.getElementById('emoji_sex').src="emoji_girl.png";
+              document.getElementById("cadranJoc").style.background= "lightpink";
+              document.documentElement.style.setProperty('--culoareUser', '#FF0000');
+             }
+    document.querySelector("#mesajFinal").innerHTML="   ";
+    domeniuDificultate();
+    }
+function domeniuDificultate(){
+    document.getElementById("startJoc").setAttribute("onclick" , "start()");
+    document.querySelector("#mesajFinal").innerHTML="Alege un domeniu si dificultatea.";
+    return "";
+}
+
 
 function start(){
+
+        if (butonStop){
+          if (confirm("Esti Sigur ca vrei sa opresti jocul?")){ //quit game confirm.
+            litereColorate(1, x, "white", "black");
+            butonStop = false;
+            document.querySelector("#startJoc").innerHTML="Start joc";
+            document.getElementById("startJoc").style.background= "white";
+            document.querySelector("#mesajFinal").innerHTML="Alege un domeniu si dificultatea.";
+            document.querySelector("#incercari").innerHTML="  ";
+            document.querySelector("#lettersWord").innerHTML=" ";
+            return "";
+          };
+          return "";
+        };
+        gameRunning = true;
         gameOver = false;
+        butonStop = true;
+        document.querySelector("h1").innerHTML="Gaseste cuvantul !";
+        document.getElementById("startJoc").setAttribute("onclick" , "start()");//schimba butonul start sa apeleze start()
+        document.querySelector("#startJoc").innerHTML="Game Over";
+        document.getElementById("startJoc").style.background= "red";
         document.getElementById('pozeJoc').src="smiley.png";
         if (winConsecutiv===2){
             if(document.getElementById('easy').checked){
