@@ -240,9 +240,7 @@ function domeniuDificultate(){
     return "";
 }
 
-
 function start(){
-
         if (butonStop){
           if (confirm("Esti Sigur ca vrei sa opresti jocul?")){ //quit game confirm.
             litereColorate(1, x, "white", "black");
@@ -284,8 +282,7 @@ function start(){
                 document.getElementById('easy').checked=true;
               }
             lose_Consecutiv = 0;
-        }
-
+        };
         if (document.getElementById('medium').checked){
           dificulty = "Medium";
           incercari = 10
@@ -295,8 +292,7 @@ function start(){
         }else {
           dificulty = "Easy";
           incercari = 15;
-        }
-
+        };
         if (document.getElementById('orase').checked){
           domeniu = verifica("orase");
         }else if (document.getElementById('tari').checked){
@@ -309,7 +305,7 @@ function start(){
           domeniu = verifica("diverse");
         }else if (document.getElementById('toate').checked){
           domeniu = verifica("toate");
-        }
+        };
 
         ab = domeniu.sort(()=>Math.random()-0.5);
         b = ab[0].toUpperCase();
@@ -318,9 +314,9 @@ function start(){
         document.querySelector("#lettersWord").innerHTML=linieIntrerupta;
         document.querySelector("#mesajFinal").innerHTML="A inceput jocul "+name+", succes !!!";
         document.querySelector("#incercari").innerHTML="Esti pe "+dificulty+". Ai "+incercari+" incercari.";
-  }
-
+  };
   function literaCheck(x){
+    if (butonStop){
           backgroundLetter = document.getElementById(x.toLowerCase()).style.background;
           if (backgroundLetter === "green" || backgroundLetter === "black"){
               document.querySelector("#mesajFinal").innerHTML="Ai mai apasat pe "+x;
@@ -370,6 +366,7 @@ function start(){
               document.querySelector("#mesajFinal").innerHTML="Bravo !!! Ai reusit !!!";
               document.querySelector("#incercari").innerHTML=" ";
               document.getElementById('pozeJoc').src="emoji_clap3.png";
+              butonStop = false;
               //document.getElementById('inima').src="hard.jpg";
               myMusic = document.getElementById("applause");
               myMusic.play();
@@ -383,7 +380,8 @@ function start(){
           }else {
               document.querySelector("#lettersWord").innerHTML=linieIntrerupta;
           }
-  }
+    }else{return ""};
+  };
 
 function test(x){
      document.querySelector("#lettersWord").innerHTML=x;
