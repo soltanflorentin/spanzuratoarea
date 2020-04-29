@@ -7,11 +7,28 @@
   margin-left: 10%;
   margin-right: 10%;
 }
-#formUsername{
-  #margin-left: 10%;
-}
 #inputPassword {
   float: left;
+}
+.regulament{
+  position: absolute;
+  right: 12%;
+  top: 7%;
+}
+.fas{
+  font-size: 25px;
+}
+.classScor{
+  top: 1%;
+  position: absolute;
+  left: 25%;
+}
+.scor{
+  float: left;
+  font-weight: bold;
+}
+.scorAct{
+  margin-left: 20px;
 }
 #topBlock {
   height: 18ex;
@@ -26,6 +43,7 @@ h1 {
   margin-top: 0px;
   margin-bottom: 0px;
   text-align: center;
+  font-style: italic;
 }
 #emoji_sex {
   height: 130px;
@@ -40,6 +58,7 @@ h1 {
   float: right;
   margin-top: -40px;
   margin-right: 1%;
+  font-weight: bold;
 }
 #easy{
   text-decoration: none;
@@ -121,12 +140,13 @@ h1 {
   margin-bottom: 5px;
 }
 .domenii {
-  top: 310px;
+  top: 300px;
   margin-left: 0px;
   width: 90px;
   height: 125px;
   border: 1px solid green;
   position: absolute;
+  font-weight: bold;
 }
 .domeniuFloat {
   float: left;
