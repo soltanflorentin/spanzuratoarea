@@ -1,6 +1,11 @@
 :root{
   --culoareUser: grey;
 }
+body {
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+}
 #cadranJoc {
   border: 10px solid black;
   height: 420px;

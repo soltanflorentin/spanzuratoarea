@@ -16,12 +16,12 @@
         </form>
       </div>
       <div class="regulament">
-        <i class="fas fa-question-circle"></i>
+        <i class="fas fa-question-circle"><!--<span class="spanRegulament">Regulament: La fiecare cuvant castigat primesti 10 puncte si la fiecare cuvant neghicit pierzi 5 puncte. La fiecare 2 consecutive pierdute sau castigate, pierzi sau castigi inca 5 puncte si automat avansezi un nivel sau te intorci un nivel.</span> --></i>
       </div>
       <div class="classScor">
           <p class="scorTot scor">Scor Total: <span id="scorTotal">0</span></p>   <!-- Scor total -->
           <p class="scorAct scor">Scor Actual: <span id="scorActual">0</span></p>
-      </div>    
+      </div>
       <br>
       <form class="nivele">
           <input id="easy" type="radio" name="levels" value="easy" checked>
@@ -160,15 +160,16 @@ function verifica(x){
 }
 
 function cupaWin(){
-        document.querySelector("#incercari").innerHTML="bau bau";
-        document.querySelector("#test_final").innerHTML="bau bau";
+        document.querySelector("#incercari").innerHTML="";
+        document.querySelector("#test_final").innerHTML="";
         document.getElementById('pozeJoc').src="emoji_clap3.png";
         //document.getElementById('inima').src="cupa.jpg";
         myMusic = document.getElementById("applause");
         myMusic.play();
         myMusic.play();
         winConsecutiv = 0;
-        setTimeout(() => { document.getElementById('easy').checked=true; start(); }, 5000);
+        butonStop = false;
+        setTimeout(() => {document.getElementById('pozeJoc').src="smiley.png";domeniuDificultate(); }, 8000);
 }
 function litereColorate(oneOrAll, x, back, letter){
       if (oneOrAll === 0) {
@@ -341,6 +342,8 @@ function start(){
         for (i of b){linieIntrerupta.push("_")};
         linieIntreruptaString = cuvantString(linieIntrerupta);
         document.querySelector("#lettersWord").innerHTML=linieIntreruptaString;
+        myMusic = document.getElementById("positive");
+        myMusic.play();
         document.querySelector("#mesajFinal").innerHTML="A inceput jocul "+name+", succes !!!";
         document.querySelector("#incercari").innerHTML="Esti pe "+dificulty+". Ai "+incercari+" incercari.";
   };
