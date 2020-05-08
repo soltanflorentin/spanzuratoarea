@@ -11,11 +11,14 @@
       <div class="inputSubmitUsername">
         <form id="formUsername">
           <input id="inputUsername" type="text" autocomplete="off" value="" placeholder="Username">
+          <button id= "signUpButton" type="button" name="button">Sign Up</button>
           <br>
           <input id="inputPassword" type="password" value="" placeholder="Password">
         </form>
       </div>
-      
+      <div class="regulament">
+        <i class="fas fa-question-circle"><!--<span class="spanRegulament">Regulament: La fiecare cuvant castigat primesti 10 puncte si la fiecare cuvant neghicit pierzi 5 puncte. La fiecare 2 consecutive pierdute sau castigate, pierzi sau castigi inca 5 puncte si automat avansezi un nivel sau te intorci un nivel.</span> --></i>
+      </div>
       <div class="classScor">
           <p class="scorTot scor">Scor Total: <span id="scorTotal">0</span></p>   <!-- Scor total -->
           <p class="scorAct scor">Scor Actual: <span id="scorActual">0</span></p>
@@ -133,14 +136,35 @@
   </audio>
 
 
-  <p id="test_final"></p>
+  <p id="test_final">xxxxxxx</p>
 
 
 
 
-<script type="text/javascript">
+<script type="text/javascript"> //JAVA SCRIPT
 
 
+
+//modifyLocalStorage("ioana","ioana,10"); introduci useri noi
+
+function modifyLocalStorage(x,y,w){ //introduci sau modifici useri x si value y. w boolean, daca true update score, false adauda user nou
+  if (w){
+    y = passwordInput+","+scorTotal.toString();
+  }
+  localStorage.setItem(x,y)
+  return;
+}
+
+function localStorageScoreExtract(name,score){ //name este nume user si score este boolean true daca e score sau false daca este password.
+	const extractUser = localStorage.getItem(name);
+	y = extractUser.split(",");
+	z = parseInt(y[1]);//va fi variabila pe care o vom folosi si modifica in timpul jocului pt scoreTotal
+  if (score){
+    return z;
+  }else {
+    return y[0];
+  }
+};
 
 function verifica(x){
       var diverse = ["masina","aeroport","avion","copac","prieten","printesa","apartament","frunze","patinuar","bicicleta","trotineta","calculator","ecran","gradinita","escavator","parfum"];
@@ -180,14 +204,14 @@ function litereColorate(oneOrAll, x, back, letter){
             i.style.background= back;
         }
       }
-      return "";
+      return;
 };
 function userAndPassword(x){
       document.querySelector("#mesajFinal").innerHTML=x;
       document.getElementById('pozeJoc').src="smiley-sad.png";
       myMusic = document.getElementById("buzz");
       myMusic.play();
-      return "";
+      return;
 };
 function score(x,z){ //x=true sau false daca este castig sau nu, z=valoarea
       if(x){
@@ -199,7 +223,7 @@ function score(x,z){ //x=true sau false daca este castig sau nu, z=valoarea
       }
       document.querySelector("#scorActual").innerHTML=scorActual;
       document.querySelector("#scorTotal").innerHTML=scorTotal;
-      return "";
+      return;
 };
 function cuvantString(x){
       let y = "";
@@ -209,8 +233,13 @@ function cuvantString(x){
       return y;
 };
 
+var numeJucatori = [];  //facem o variabila cu toate keys
+for (var i in localStorage){
+	numeJucatori.push(i)
+};
+
 winConsecutiv = 0;
-lose_Consecutiv =0;
+lose_Consecutiv = 0;
 scorActual = 0;
 cupa = false;
 gameRunning = false; // daca suntem in timpul jocului
@@ -219,25 +248,28 @@ butonStop = false; //butonul de quit game
 
 function nume(){
 
-    numeJucatori = {x:{password:"1",scoreTotal: 100},florentin: {password: "123", scoreTotal: 75, gender: "man"}, raluca: {password: "raluca2008", scoreTotal: 250, gender: "girl"}, ioana: {password: "123", scoreTotal: 50, gender: "girl"}};
+    //numeJucatori = {x:{password:"1",scoreTotal: 100},florentin: {password: "123", scoreTotal: 75, gender: "man"}, raluca: {password: "raluca2008", scoreTotal: 250, gender: "girl"}, ioana: {password: "123", scoreTotal: 50, gender: "girl"}};
     numeInput= document.getElementById('inputUsername').value;
     numeInput = numeInput.toLowerCase();
     passwordInput =document.getElementById('inputPassword').value;
-
-    if (numeJucatori.hasOwnProperty(numeInput) === false){
+    checkPassword = localStorageScoreExtract(numeInput,false);
+    xoxo = numeJucatori.indexOf(numeInput);
+    if (xoxo < 0){
         userAndPassword("Numele nu este in baza de date.")
-        return "";
-    }else if (passwordInput != numeJucatori[numeInput].password) {
+        return;
+    }else if (passwordInput != checkPassword) {
         userAndPassword("Passwordul este incorect.")
-        return "";
+        return;
     };
+    //Dupa ce userul si password sunt corecte
     myMusic = document.getElementById("positive");
     myMusic.play();
-    scorTotal = numeJucatori[numeInput].scoreTotal;
+    scorTotal = localStorageScoreExtract(numeInput,true)
     document.querySelector("#scorTotal").innerHTML=scorTotal;
     name = numeInput.toUpperCase();
     document.querySelector("h1").innerHTML="Bine ai venit "+name+" !!!";
     document.getElementById("formUsername").reset();
+
     if (name === "FLORENTIN") {
         document.getElementById('pozProfil').src="flo.jpg";
         document.getElementById('emoji_sex').src="emoji_boy.png";
@@ -262,7 +294,7 @@ function nume(){
 function domeniuDificultate(){
     document.getElementById("startJoc").setAttribute("onclick" , "start()");
     document.querySelector("#mesajFinal").innerHTML="Alege un domeniu si dificultatea.";
-    return "";
+    return;
 }
 
 function start(){
@@ -276,9 +308,9 @@ function start(){
             document.querySelector("#mesajFinal").innerHTML="Alege un domeniu si dificultatea.";
             document.querySelector("#incercari").innerHTML="  ";
             document.querySelector("#lettersWord").innerHTML=" ";
-            return "";
+            return;
           };
-          return "";
+          return;
         };
         gameRunning = true;
         gameOver = false;
@@ -297,6 +329,7 @@ function start(){
                 cupa = true;
               }
             score(true, 5); // bonus de inca 5 puncte pt 2 consecutive
+            modifyLocalStorage(numeInput,"",true);
             winConsecutiv = 0;
         }
         if (lose_Consecutiv===2){
@@ -305,10 +338,11 @@ function start(){
               }else if (document.getElementById('medium').checked) {
                 document.getElementById('easy').checked=true;
               }else {
-                document.getElementById('easy').checked=true;
+                //document.getElementById('easy').checked=true;
               }
             lose_Consecutiv = 0;
-            score(false,11); // bonus in minus pt 2 pierderi consecutive
+            score(false,5); // bonus in minus pt 2 pierderi consecutive
+            modifyLocalStorage(numeInput,"",true);
         };
         if (document.getElementById('medium').checked){
           dificulty = "Medium";
@@ -367,7 +401,6 @@ function start(){
           for (i of linieIntrerupta){
             linieIntrerupta2 += i;
           }
-
           if (adevar) {
             litereColorate(0, x, "green", "white");
             document.querySelector("#mesajFinal").innerHTML="Ai ghicit o litera !!!";
@@ -384,6 +417,7 @@ function start(){
               document.querySelector("#mesajFinal").innerHTML="Ai pierdut, cuvantul era:";
               document.querySelector("#incercari").innerHTML=" ";
               score(false,5);
+              modifyLocalStorage(numeInput,"",true);
               gameOver = true;
             }else{
             document.querySelector("#incercari").innerHTML="Mai ai "+incercari+" incercari.";
@@ -399,6 +433,7 @@ function start(){
               document.querySelector("#incercari").innerHTML=" ";
               document.getElementById('pozeJoc').src="emoji_clap3.png";
               score(true,10);
+              modifyLocalStorage(numeInput,"",true);
               butonStop = false;
               myMusic = document.getElementById("applause");
               myMusic.play();
@@ -406,10 +441,11 @@ function start(){
           }
           if (gameOver){
               document.querySelector("#lettersWord").innerHTML=b;
-              lose_Consecutiv--;
+              lose_Consecutiv++;
               winConsecutiv = 0;
               butonStop = false;
-              setTimeout(() => {litereColorate(1, x, "white", "black"); document.getElementById('easy').checked=true; start(); }, 5000);
+              document.getElementById("test_final").innerHTML = lose_Consecutiv;
+              setTimeout(() => {litereColorate(1, x, "white", "black"); start()}, 5000);
           }else {
               linieIntreruptaString = cuvantString(linieIntrerupta);
               document.querySelector("#lettersWord").innerHTML=linieIntreruptaString;
