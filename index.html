@@ -5,34 +5,67 @@
     <title>Spanzuratoarea</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/94bd77e01c.js" crossorigin="anonymous"></script> <!--semnul de intrebare -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
   </head>
   <body style="background-image: url('multicolor5.jpg');">
+
+    <div class="signUpPage">
+      <button type="button" class="butonExit signUpButtonClass btn btn-xs btn-danger" name="button">X</button>
+        <p>Tasteaza un Username, o parola, si daca esti baiat sau fata.</p>
+      <div  class="clasaSignUpContent">
+        <img class="imgBoySignUp" src="emoji_boy.png" alt="boy">
+        <img class="imgGirlSignUp" src="emoji_girl.png" alt="girl">
+        <form class="signUpCreateForm">
+            <input id="newInputUser" type="text" autocomplete="off" value="" placeholder="Username">
+            <input id="newinputPassword" type="password" value="" placeholder="Password">
+        </form>
+        <br><br>
+        <div>
+            <button type="button" class="signUpButtonClass btn btn-primary" onclick="new_user()" name="button">Sign Up</button>
+        </div>
+      <form class="formGenderRadio">
+          <input  id="radioBoy" type="radio" name="gender" value="boy">
+          <label  for="radioBoy">Boy</label>
+          <input  id="radioGirl" type="radio" name="gender" value="girl">
+          <label  for="radioGirl">Girl</label>
+      </form>
+
+      </div>
+
+    </div>
+
     <div id="cadranJoc" style="background: lightgreen;">
       <div class="inputSubmitUsername">
         <form id="formUsername">
+          <div class="userPass">
           <input id="inputUsername" type="text" autocomplete="off" value="" placeholder="Username">
-          <button id= "signUpButton" type="button" name="button">Sign Up</button>
-          <br>
           <input id="inputPassword" type="password" value="" placeholder="Password">
+        </div>
+        <div class="signupLogin">
+          <button id="logInButton" class="btn btn-warning" type="button" name="button">Log In</button>
+          <button id= "signUpButton" class="signUpButtonClass btn btn-primary" type="button" name="button">Sign Up</button>
+        </div>
         </form>
       </div>
-      <div class="regulament">
-        <i class="fas fa-question-circle"><!--<span class="spanRegulament">Regulament: La fiecare cuvant castigat primesti 10 puncte si la fiecare cuvant neghicit pierzi 5 puncte. La fiecare 2 consecutive pierdute sau castigate, pierzi sau castigi inca 5 puncte si automat avansezi un nivel sau te intorci un nivel.</span> --></i>
-      </div>
+      <!--<div class="regulament">
+        <i class="fas fa-question-circle"><!--<span class="spanRegulament">Regulament: La fiecare cuvant castigat primesti 10 puncte si la fiecare cuvant neghicit pierzi 5 puncte. La fiecare 2 consecutive pierdute sau castigate, pierzi sau castigi inca 5 puncte si automat avansezi un nivel sau te intorci un nivel.</span> </i>
+      </div> -->
       <div class="classScor">
           <p class="scorTot scor">Scor Total: <span id="scorTotal">0</span></p>   <!-- Scor total -->
           <p class="scorAct scor">Scor Actual: <span id="scorActual">0</span></p>
       </div>
-      <br>
+
       <form class="nivele">
-          <input id="easy" type="radio" name="levels" value="easy" checked>
-          <label for="easy" title="Ai 15 incercari">Easy</label>
-          <input id="medium" type="radio" name="levels" value="medium">
-          <label for="medium" title="Ai 10 incercari">Medium</label>
-          <input id="hard" type="radio" name="levels" value="hard">
-          <label for="hard" title="Ai 5 incercari">Hard</label>
+          <input  id="easy" type="radio" name="levels" value="easy" checked>
+          <label  for="easy" title="Ai 15 incercari">Easy</label>
+          <input  id="medium" type="radio" name="levels" value="medium">
+          <label  for="medium" title="Ai 10 incercari">Medium</label>
+          <input  id="hard" type="radio" name="levels" value="hard">
+          <label  for="hard" title="Ai 5 incercari">Hard</label>
       </form>
-      <br>
+      <br><br>
       <div id="topBlock">
           <img id="pozProfil" src="smiley.png" alt="flo">
           <img id="emoji_sex" src="smiley.png" alt="emoji">
@@ -79,10 +112,11 @@
           <div class="textMijloc">
                   <div class="mesajSfarsit">
                       <p id="mesajFinal">Tasteaza numele si parola !</p>
+                      <br>
                       <p id="incercari"></p>
                   </div>
           </div>
-          <br><br>
+              <br><br>
               <div class="word">
                   <p id="lettersWord"></p>
 
@@ -92,7 +126,7 @@
      </div>
 
     <div class="domenii">
-    <form class="nivele">
+    <form class="domeniiForm">
         <p class="titluDomenii"><b><ins>Domenii</ins></b></p>
         <div class="domeniuFloat">
         <input class="domeniu_individual" id="diverse" type="radio" name="levels" value="diverse" checked>
@@ -144,8 +178,12 @@
 <script type="text/javascript"> //JAVA SCRIPT
 
 
+function new_user(){   //introduci useri noi
+    return;
 
-//modifyLocalStorage("ioana","ioana,0"); //introduci useri noi
+    //nume_start();
+}
+
 
 function modifyLocalStorage(x,y,w){ //introduci sau modifici useri x si value y. w boolean, daca true update score, false adauda user nou
   if (w){
@@ -261,6 +299,9 @@ function nume(){
         userAndPassword("Passwordul este incorect.")
         return;
     };
+    nume_start();
+};
+function nume_start(){
     //Dupa ce userul si password sunt corecte
     myMusic = document.getElementById("positive");
     myMusic.play();
@@ -291,6 +332,7 @@ function nume(){
     document.querySelector("#mesajFinal").innerHTML="   ";
     domeniuDificultate();
     }
+
 function domeniuDificultate(){
     document.getElementById("startJoc").setAttribute("onclick" , "start()");
     document.querySelector("#mesajFinal").innerHTML="Alege un domeniu si dificultatea.";
@@ -453,12 +495,30 @@ function start(){
     }else{return ""};
   };
 
+
+
 function test(x){
      document.querySelector("#lettersWord").innerHTML=x;
 }
 function pauza(){
   var popa = 0;
 }
+
+
+$(".signUpButtonClass").click(function(){ //JQUERY -----------
+    $(".signUpPage").slideToggle(1000);
+})
+
+
+$("#radioBoy").click(function(){
+              $(".imgBoySignUp").effect( "bounce", {times:3}, 400 );
+  });
+$("#radioGirl").click(function(){
+                $(".imgGirlSignUp").effect( "bounce", {times:3}, 400 );
+    });
+$(".litereAM").click(function(){
+            $(this).effect( "bounce", {direction: "left", times:3}, 400 );
+        });
 
      </script>
   </body>

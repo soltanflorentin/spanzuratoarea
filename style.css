@@ -6,15 +6,78 @@ body {
   background-position: center top;
   background-size: cover;
 }
+
+
+.signUpPage{
+  width: 780px;
+  height: 420px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  display: none;
+  position: absolute;
+  z-index: 11;
+  background: lightpink;
+  border: 1px solid green;
+  text-align: center;
+}
+.butonExit{
+  float: right;
+  height: 25px;
+  width: 25px
+}
+.signUpCreateForm{
+  margin-top: 150px;
+}
+.clasaSignUpContent{
+  margin-top: -100px;
+}
+.signUpPage img{
+  height: 200px;
+}
+.imgBoySignUp{
+  float: left;
+}
+.imgGirlSignUp{
+  float: right;
+}
+#radioBoy{
+  margin-left: -10px;
+
+}
+#radioGirl{
+  margin-left: 270px;
+}
+.userPass,.signupLogin {
+  float: left;
+}
+.userPass{
+  display: grid;
+  grid-template-rows: auto auto;
+}
+.userPass{
+  width: auto;
+}
+.signupLogin{
+  margin-left: 2px;
+}
+#signUpButton{
+    margin-left: 10px;
+}
+.signUpPage p{
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
 #cadranJoc {
   border: 10px solid black;
   height: 420px;
   margin-left: 10%;
   margin-right: 10%;
 }
-#inputPassword {
-  float: left;
-}
+
 .regulament{
   position: absolute;
   right: 12%;
@@ -38,18 +101,23 @@ body {
 .fas{
   font-size: 25px;
 }
+
+
 .classScor{
-  top: 1%;
+  top: 2%;
   position: absolute;
-  left: 30%;
+  left: 45%;
 }
 .scor{
   float: left;
   font-weight: bold;
+  font-size: 16px;
 }
 .scorAct{
   margin-left: 20px;
 }
+
+
 #topBlock {
   height: 18ex;
 }
@@ -59,6 +127,8 @@ body {
   height: 130px;
   width: 130px;
 }
+
+
 h1 {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -70,15 +140,22 @@ h1 {
   width: 130px;
   float: right;
 }
+
+
 .nivele{
   float: right;
-  margin-top: -40px;
+  padding-top: 5px;
   margin-right: 1%;
   font-weight: bold;
+}
+.niveleIndividual{
+  margin: 0px;
 }
 #easy{
   text-decoration: none;
 }
+
+
 .startJocul {
   margin-left: 47%;
   margin-right: auto;
@@ -88,6 +165,11 @@ h1 {
   font-weight: bold;
   border-radius: 8px;
 }
+#startJoc:hover{
+  background: var(--culoareUser);
+  color: white;
+}
+
 .clasaLitereToate{
   text-align: center;
 }
@@ -100,38 +182,34 @@ h1 {
   background: var(--culoareUser) !important;
   color: white;
 }
-#startJoc:hover{
-  background: var(--culoareUser);
-  color: white;
-}
 .clasaLitereNZ{
   margin-top: 10px;
 }
+
+
 #mesaje {
   height: 5ex;
   text-align: center;
   border: 1px solid green;
 }
 .textMijloc{
-  margin-top: -35px;
+  margin-top: 0px;
   height: 5ex;
   text-align: center;
 }
 
 
-.form {
-  float: left;
-}
-
 .word {
-  margin-top: -50px;
-  height: 20ex;
+  margin-top: 0px;
+  height: 80px;
   text-align: center;
 }
 #lettersWord {
   font-size: 50px;
 
 }
+
+
 #mesajFinal {
   font-weight: bold;
   font-size: 35px;
@@ -151,22 +229,22 @@ h1 {
   position: absolute;
   right: 12%;
 }
+
+
 .titluDomenii {
   margin-right: 15px;
   margin-bottom: 5px;
 }
 .domenii {
-  top: 300px;
-  margin-left: 0px;
+  top: 255px;
+  margin-left: 1px;
   width: 90px;
-  height: 125px;
+  height: 155px;
   border: 1px solid green;
   position: absolute;
   font-weight: bold;
 }
 .domeniuFloat {
   float: left;
-}
-.domenii .nivele p{
-  text-align: center;
+  margin-bottom: -6px;
 }
