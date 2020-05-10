@@ -12,28 +12,26 @@
   <body style="background-image: url('multicolor5.jpg');">
 
     <div class="signUpPage" id="idSignUpPage">
-      <button type="button" class="butonExit signUpButtonClass btn btn-xs btn-danger" name="button">X</button>
-        <p>Tasteaza un Username, o parola, si daca esti baiat sau fata.</p>
-      <div  class="clasaSignUpContent">
-        <img class="imgBoySignUp" src="emoji_boy.png" alt="boy">
-        <img class="imgGirlSignUp" src="emoji_girl.png" alt="girl">
-        <form class="signUpCreateForm">
-            <input id="newInputUser" type="text" autocomplete="off" value="" placeholder="Username">
-            <input id="newinputPassword" type="password" value="" placeholder="Password">
+        <button type="button" class="butonExit signUpButtonClass btn btn-xs btn-danger" name="button">X</button>
+          <p>Tasteaza un Username, o parola, si daca esti baiat sau fata.</p>
+        <div  class="clasaSignUpContent">
+          <img class="imgBoySignUp" src="emoji_boy.png" alt="boy">
+          <img class="imgGirlSignUp" src="emoji_girl.png" alt="girl">
+          <form class="signUpCreateForm">
+              <input id="newInputUser" type="text" autocomplete="off" value="" placeholder="Username">
+              <input id="newinputPassword" type="password" value="" placeholder="Password">
+          </form>
+          <br><br>
+          <div>
+              <button type="button" class="signUpButtonClass btn btn-primary" onclick="new_user()" name="button">Sign Up</button>
+          </div>
+        <form class="formGenderRadio">
+            <input  id="radioBoy" type="radio" name="gender" value="boy">
+            <label  for="radioBoy"><b>Boy</b></label>
+            <input  id="radioGirl" type="radio" name="gender" value="girl">
+            <label  for="radioGirl"><b>Girl</b></label>
         </form>
-        <br><br>
-        <div>
-            <button type="button" class="signUpButtonClass btn btn-primary" onclick="new_user()" name="button">Sign Up</button>
         </div>
-      <form class="formGenderRadio">
-          <input  id="radioBoy" type="radio" name="gender" value="boy">
-          <label  for="radioBoy"><b>Boy</b></label>
-          <input  id="radioGirl" type="radio" name="gender" value="girl">
-          <label  for="radioGirl"><b>Girl</b></label>
-      </form>
-
-      </div>
-
     </div>
 
     <div id="cadranJoc" style="background: lightgreen;">
@@ -44,7 +42,7 @@
           <input id="inputPassword" type="password" value="" placeholder="Password">
         </div>
         <div class="signupLogin">
-          <button id="logInButton" class="btn btn-warning" type="button" name="button">Log In</button>
+          <button id="logInButton" class="btn btn-warning" type="button" name="button" onclick="nume()" >Log In</button>
           <button id= "signUpButton" class="signUpButtonClass btn btn-primary" type="button" name="button">Sign Up</button>
         </div>
         </form>
@@ -73,7 +71,7 @@
 
 
           <div class="startJocul">
-               <button id="startJoc" type="button"  onclick="nume()">Start joc</button>
+               <button id="startJoc" class="btn btn-primary" type="button"  onclick="start()" disabled>Start joc</button>
           </div>
           <br>
           <div class="clasaLitereToate">
@@ -175,48 +173,60 @@
 
 
 
-<script type="text/javascript"> //JAVA SCRIPT
+<script type="text/javascript"> //JAVA SCRIPT----------------------------------------------
+
 
 
 function new_user(){ //introduci useri noi
     myMusic = document.getElementById("buzz");
     numeInput= document.getElementById('newInputUser').value;
+    numeInput = numeInput.toLowerCase();
     passwordInput =document.getElementById('newinputPassword').value;
     if (numeInput === "" || passwordInput === "") {
       document.querySelector("#mesajFinal").innerHTML="Nu ai tastat un username sau o parola";
       myMusic.play();
-      setTimeout(() => {$(".signUpPage").slideToggle(1000)}, 2000);
+      setTimeout(() => {$(".signUpPage").slideToggle(1000)}, 2500);
       return;
     }else if (!document.getElementById('radioBoy').checked && !document.getElementById('radioGirl').checked){
       document.querySelector("#mesajFinal").innerHTML="Nu ai ales daca esti fata sau baiat.";
       myMusic.play();
-      setTimeout(() => {$(".signUpPage").slideToggle(1000)}, 2000);
+      setTimeout(() => {$(".signUpPage").slideToggle(1000)}, 2500);
       return;
     }
-    //newPassScore = passwordInput.toString()+","+"0";
-    //modifyLocalStorage(numeInput,newPassScore,false)
-    //nume_start();
-    return; //doar pt probe. trebuie sters !!!!!!
+    gender = "";
+    if (document.getElementById('radioBoy').checked) {
+        gender = "boy";
+    }else {
+      gender = "girl";
+    }
+    newPassScore = passwordInput.toString()+","+"0"+","+gender;
+    modifyLocalStorage(numeInput,newPassScore,false);
+    document.getElementById('signUpButton').disabled = true;
+    document.getElementById('logInButton').disabled = true;
+    nume_start();
+    //return; //doar pt probe trebuie sters !!!!!!
 }
 
 
 function modifyLocalStorage(x,y,w){ //introduci sau modifici useri x si value y. w boolean, daca true update score, false adauda user nou
   if (w){
-    y = passwordInput+","+scorTotal.toString();
+    y = passwordInput+","+scorTotal.toString()+","+gender;
   }
   localStorage.setItem(x,y);
   return;
 }
 
-function localStorageScoreExtract(name,score){ //name este nume user si score este boolean true daca e score sau false daca este password.
+function localStorageScoreExtract(name,score){ //name este nume user,  score=2 password=1  gender=3
 	const extractUser = localStorage.getItem(name);
 	y = extractUser.split(",");
 	z = parseInt(y[1]);//va fi variabila pe care o vom folosi si modifica in timpul jocului pt scoreTotal
-  if (score){
+  if (score === 2){
     return z;
-  }else {
-    return y[0];
-  }
+  }else if (score === 1) {
+      return y[0];
+}else {
+    return y[2];
+}
 };
 
 function verifica(x){
@@ -303,7 +313,7 @@ function nume(){
     numeInput= document.getElementById('inputUsername').value;
     numeInput = numeInput.toLowerCase();
     passwordInput =document.getElementById('inputPassword').value;
-    checkPassword = localStorageScoreExtract(numeInput,false);
+    checkPassword = localStorageScoreExtract(numeInput,1);
     xoxo = numeJucatori.indexOf(numeInput);
     if (xoxo < 0){
         userAndPassword("Numele nu este in baza de date.")
@@ -316,9 +326,12 @@ function nume(){
 };
 function nume_start(){
     //Dupa ce userul si password sunt corecte
+    document.getElementById('startJoc').disabled = false;
+    document.getElementById('signUpButton').disabled = true;
+    document.getElementById('logInButton').disabled = true;
     myMusic = document.getElementById("positive");
     myMusic.play();
-    scorTotal = localStorageScoreExtract(numeInput,true)
+    scorTotal = localStorageScoreExtract(numeInput,2)
     document.querySelector("#scorTotal").innerHTML=scorTotal;
     name = numeInput.toUpperCase();
     document.querySelector("h1").innerHTML="Bine ai venit "+name+" !!!";
@@ -342,24 +355,33 @@ function nume_start(){
               document.getElementById("cadranJoc").style.background= "lightpink";
               document.documentElement.style.setProperty('--culoareUser', '#FF0000');
              }
+    gender = localStorageScoreExtract(numeInput,3);
+    if (gender === "girl") {
+      document.getElementById('emoji_sex').src="emoji_girl.png";
+      document.getElementById("cadranJoc").style.background= "lightpink";
+      document.documentElement.style.setProperty('--culoareUser', '#FF0000');
+    } else {
+      document.getElementById('emoji_sex').src="emoji_boy.png";
+      document.getElementById("cadranJoc").style.background= "lightblue";
+      document.documentElement.style.setProperty('--culoareUser', 'blue');
+    }
     document.querySelector("#mesajFinal").innerHTML="   ";
     domeniuDificultate();
     }
 
 function domeniuDificultate(){
-    document.getElementById("startJoc").setAttribute("onclick" , "start()");
     document.querySelector("#mesajFinal").innerHTML="Alege un domeniu si dificultatea.";
     return;
 }
 
 function start(){
         if (butonStop){
-          if (confirm("Esti Sigur ca vrei sa opresti jocul?")){ //quit game confirm.
+          if (confirm("Esti Sigur ca vrei sa opresti jocul? Vei pierde 5 puncte!")){ //quit game confirm.
             litereColorate(1, x, "white", "black");
             butonStop = false;
+            score(false,5);
             document.querySelector("#startJoc").innerHTML="Start joc";
-            document.getElementById("startJoc").style.background= "white";
-            document.getElementById("startJoc").style.color= "black";
+            $("#startJoc").removeClass('btn-danger').addClass('btn-primary');
             document.querySelector("#mesajFinal").innerHTML="Alege un domeniu si dificultatea.";
             document.querySelector("#incercari").innerHTML="  ";
             document.querySelector("#lettersWord").innerHTML=" ";
@@ -373,7 +395,7 @@ function start(){
         document.querySelector("h1").innerHTML="Gaseste cuvantul !";
         document.getElementById("startJoc").setAttribute("onclick" , "start()");//schimba butonul start sa apeleze start()
         document.querySelector("#startJoc").innerHTML="Game Over";
-        document.getElementById("startJoc").style.background= "red";
+        $("#startJoc").removeClass('btn-primary').addClass("btn-danger");
         document.getElementById('pozeJoc').src="smiley.png";
         if (winConsecutiv===2){
             if(document.getElementById('easy').checked){
