@@ -11,7 +11,7 @@
   </head>
   <body style="background-image: url('multicolor5.jpg');">
 
-    <div class="signUpPage">
+    <div class="signUpPage" id="idSignUpPage">
       <button type="button" class="butonExit signUpButtonClass btn btn-xs btn-danger" name="button">X</button>
         <p>Tasteaza un Username, o parola, si daca esti baiat sau fata.</p>
       <div  class="clasaSignUpContent">
@@ -27,9 +27,9 @@
         </div>
       <form class="formGenderRadio">
           <input  id="radioBoy" type="radio" name="gender" value="boy">
-          <label  for="radioBoy">Boy</label>
+          <label  for="radioBoy"><b>Boy</b></label>
           <input  id="radioGirl" type="radio" name="gender" value="girl">
-          <label  for="radioGirl">Girl</label>
+          <label  for="radioGirl"><b>Girl</b></label>
       </form>
 
       </div>
@@ -178,10 +178,25 @@
 <script type="text/javascript"> //JAVA SCRIPT
 
 
-function new_user(){   //introduci useri noi
-    return;
-
+function new_user(){ //introduci useri noi
+    myMusic = document.getElementById("buzz");
+    numeInput= document.getElementById('newInputUser').value;
+    passwordInput =document.getElementById('newinputPassword').value;
+    if (numeInput === "" || passwordInput === "") {
+      document.querySelector("#mesajFinal").innerHTML="Nu ai tastat un username sau o parola";
+      myMusic.play();
+      setTimeout(() => {$(".signUpPage").slideToggle(1000)}, 2000);
+      return;
+    }else if (!document.getElementById('radioBoy').checked && !document.getElementById('radioGirl').checked){
+      document.querySelector("#mesajFinal").innerHTML="Nu ai ales daca esti fata sau baiat.";
+      myMusic.play();
+      setTimeout(() => {$(".signUpPage").slideToggle(1000)}, 2000);
+      return;
+    }
+    //newPassScore = passwordInput.toString()+","+"0";
+    //modifyLocalStorage(numeInput,newPassScore,false)
     //nume_start();
+    return; //doar pt probe. trebuie sters !!!!!!
 }
 
 
@@ -189,7 +204,7 @@ function modifyLocalStorage(x,y,w){ //introduci sau modifici useri x si value y.
   if (w){
     y = passwordInput+","+scorTotal.toString();
   }
-  localStorage.setItem(x,y)
+  localStorage.setItem(x,y);
   return;
 }
 
@@ -285,8 +300,6 @@ butonStop = false; //butonul de quit game
 
 
 function nume(){
-
-    //numeJucatori = {x:{password:"1",scoreTotal: 100},florentin: {password: "123", scoreTotal: 75, gender: "man"}, raluca: {password: "raluca2008", scoreTotal: 250, gender: "girl"}, ioana: {password: "123", scoreTotal: 50, gender: "girl"}};
     numeInput= document.getElementById('inputUsername').value;
     numeInput = numeInput.toLowerCase();
     passwordInput =document.getElementById('inputPassword').value;
@@ -479,7 +492,8 @@ function start(){
               butonStop = false;
               myMusic = document.getElementById("applause");
               myMusic.play();
-              setTimeout(() => {litereColorate(1, x, "white", "black"); start(); }, 6000);
+              $("#pozeJoc").effect( "shake", {times:5}, 4000 );
+              setTimeout(() => {litereColorate(1, x, "white", "black"); start(); }, 5000);
           }
           if (gameOver){
               document.querySelector("#lettersWord").innerHTML=b;
@@ -517,7 +531,7 @@ $("#radioGirl").click(function(){
                 $(".imgGirlSignUp").effect( "bounce", {times:3}, 400 );
     });
 $(".litereAM").click(function(){
-            $(this).effect( "bounce", {direction: "left", times:3}, 400 );
+            //$(this).effect( "bounce", {direction: "left", times:3}, 400 );
         });
 
      </script>
