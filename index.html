@@ -33,7 +33,21 @@
         </form>
         </div>
     </div>
+    <div class="regulamentClass">
+        <button type="button" class="butonExitRegulament btn btn-xs btn-danger" name="button">X</button>
+      <pre class="textPre"><ins>Regulament:</ins>
 
+  -La fiecare cuvant castigat primesti 10 puncte si la fiecare
+  cuvant neghicit pierzi 5 puncte.
+
+  -La fiecare 2 consecutive pierdute sau castigate,
+  pierzi sau castigi inca 5 puncte si automat
+  avansezi un nivel sau te intorci un nivel.
+
+  -Daca termini toate nivelele, primesti un bonus de 50 puncte.
+
+      </pre>
+    </div>
     <div id="cadranJoc" style="background: lightgreen;">
       <div class="inputSubmitUsername">
         <form id="formUsername">
@@ -46,10 +60,16 @@
           <button id= "signUpButton" class="signUpButtonClass btn btn-primary" type="button" name="button">Sign Up</button>
         </div>
         </form>
+
+  <abbr title="Regulament"><i class="fas fa-question-circle"></i></abbr>
+  <abbr title="Volume On/Off"><i id="onOff" class="volumeOnOff fas fa-volume-up" onclick="volumeOff()"></i></abbr>
+  <abbr title="Not available yet"><div class="steaguriClass">
+            <img class="steaguri steagRo"src="ro_flag.png" alt="ro">
+            <img class="steaguri steagEng"src="eng_flag.png" alt="eng">
+          </div></abbr>
+
       </div>
-      <!--<div class="regulament">
-        <i class="fas fa-question-circle"><!--<span class="spanRegulament">Regulament: La fiecare cuvant castigat primesti 10 puncte si la fiecare cuvant neghicit pierzi 5 puncte. La fiecare 2 consecutive pierdute sau castigate, pierzi sau castigi inca 5 puncte si automat avansezi un nivel sau te intorci un nivel.</span> </i>
-      </div> -->
+
       <div class="classScor">
           <p class="scorTot scor">Scor Total: <span id="scorTotal">0</span></p>   <!-- Scor total -->
           <p class="scorAct scor">Scor Actual: <span id="scorActual">0</span></p>
@@ -168,7 +188,7 @@
   </audio>
 
 
-  <p id="test_final">xxxxxxx</p>
+  <p id="test_final">xxxx</p>
 
 
 
@@ -182,6 +202,12 @@ function new_user(){ //introduci useri noi
     numeInput= document.getElementById('newInputUser').value;
     numeInput = numeInput.toLowerCase();
     passwordInput =document.getElementById('newinputPassword').value;
+    xoxo = numeJucatori.indexOf(numeInput);
+    if (xoxo > 0){
+        userAndPassword("Numele este deja in baza de date.")
+        setTimeout(() => {$(".signUpPage").slideToggle(1000)}, 2500);
+        return;
+      };
     if (numeInput === "" || passwordInput === "") {
       document.querySelector("#mesajFinal").innerHTML="Nu ai tastat un username sau o parola";
       myMusic.play();
@@ -230,7 +256,7 @@ function localStorageScoreExtract(name,score){ //name este nume user,  score=2 p
 };
 
 function verifica(x){
-      var diverse = ["masina","aeroport","avion","copac","prieten","printesa","apartament","frunze","patinuar","bicicleta","trotineta","calculator","ecran","gradinita","escavator","parfum"];
+      var diverse = ["x"];//["masina","aeroport","avion","copac","prieten","printesa","apartament","frunze","patinuar","bicicleta","trotineta","calculator","ecran","gradinita","escavator","parfum"];
       var orase = ["bucuresti","londra","brasov","mangalia","constanta","sibiu","braila","galati","paris","dubai","abudabi","roma","milano","miami","sydney"];
       var tari = ["italia","franta","romania","anglia","korea","china","japonia","america","germania","rusia","bulgaria","turcia","spania","mexic","argentina","norvegia","ungaria","moldova","serbia","ucraina","australia"];
       var nume = ["florentin","raluca","calin","elena","stefania","roxana","maria","antonia","elizabeta","george","razvan","tudor","ioana","cristi","adrian","delia","miruna","matei","sebastian","patrik","ionut","sorin","vasile","sara","mihai","mihaela","madalina","cristina"];
@@ -245,16 +271,19 @@ function verifica(x){
 }
 
 function cupaWin(){
-        document.querySelector("#incercari").innerHTML="";
-        document.querySelector("#test_final").innerHTML="";
-        document.getElementById('pozeJoc').src="emoji_clap3.png";
-        //document.getElementById('inima').src="cupa.jpg";
+        document.getElementById("incercari").innerHTML="";
+        document.getElementById("mesajFinal").innerHTML="Ai primit un bonus de 50 de puncte!!!";
+        document.getElementById('pozeJoc').src="cupa.jpg";
         myMusic = document.getElementById("applause");
         myMusic.play();
+        $("#pozeJoc").effect( "shake", {times:5}, 4000 );
         myMusic.play();
         winConsecutiv = 0;
         butonStop = false;
-        setTimeout(() => {document.getElementById('pozeJoc').src="smiley.png";domeniuDificultate(); }, 8000);
+        cupa_win=false;
+        score(true,50);
+        modifyLocalStorage(numeInput,"",true);
+        setTimeout(() => {document.getElementById('pozeJoc').src="smiley.png";domeniuDificultate(); }, 30000);
 }
 function litereColorate(oneOrAll, x, back, letter){
       if (oneOrAll === 0) {
@@ -295,6 +324,25 @@ function cuvantString(x){
       }
       return y;
 };
+function volumeOnOff(x){
+    document.getElementById("positive").muted = x;
+    document.getElementById("buzz").muted = x;
+    document.getElementById("applause").muted = x;
+    document.getElementById("audioSong").muted = x;
+    return;
+}
+function volumeOff(){
+    $(".volumeOnOff").removeClass('fa-volume-up').addClass("fa-volume-mute");
+    document.getElementById("onOff").setAttribute("onclick" , "volumeOn()");
+    volumeOnOff(true);
+    return;
+}
+function volumeOn(){
+    $(".volumeOnOff").removeClass('fa-volume-mute').addClass("fa-volume-up");
+    document.getElementById("onOff").setAttribute("onclick" , "volumeOff()");
+    volumeOnOff(false);
+    return;
+}
 
 var numeJucatori = [];  //facem o variabila cu toate keys
 for (var i in localStorage){
@@ -307,18 +355,20 @@ scorActual = 0;
 cupa = false;
 gameRunning = false; // daca suntem in timpul jocului
 butonStop = false; //butonul de quit game
+cupa_win = false;
 
 
 function nume(){
     numeInput= document.getElementById('inputUsername').value;
     numeInput = numeInput.toLowerCase();
     passwordInput =document.getElementById('inputPassword').value;
-    checkPassword = localStorageScoreExtract(numeInput,1);
     xoxo = numeJucatori.indexOf(numeInput);
     if (xoxo < 0){
         userAndPassword("Numele nu este in baza de date.")
         return;
-    }else if (passwordInput != checkPassword) {
+    };
+    checkPassword = localStorageScoreExtract(numeInput,1);
+    if (passwordInput != checkPassword) {
         userAndPassword("Passwordul este incorect.")
         return;
     };
@@ -397,6 +447,7 @@ function start(){
         document.querySelector("#startJoc").innerHTML="Game Over";
         $("#startJoc").removeClass('btn-primary').addClass("btn-danger");
         document.getElementById('pozeJoc').src="smiley.png";
+
         if (winConsecutiv===2){
             if(document.getElementById('easy').checked){
                 document.getElementById('medium').checked=true;
@@ -414,8 +465,6 @@ function start(){
                 document.getElementById('medium').checked=true;
               }else if (document.getElementById('medium').checked) {
                 document.getElementById('easy').checked=true;
-              }else {
-                //document.getElementById('easy').checked=true;
               }
             lose_Consecutiv = 0;
             score(false,5); // bonus in minus pt 2 pierderi consecutive
@@ -430,6 +479,7 @@ function start(){
         }else {
           dificulty = "Easy";
           incercari = 15;
+          cupa_win = true;
         };
         if (document.getElementById('orase').checked){
           domeniu = verifica("orase");
@@ -510,8 +560,11 @@ function start(){
               document.querySelector("#incercari").innerHTML=" ";
               document.getElementById('pozeJoc').src="emoji_clap3.png";
               score(true,10);
-              modifyLocalStorage(numeInput,"",true);
               butonStop = false;
+              if (winConsecutiv===2 && cupa_win===true && document.getElementById('hard').checked===true){
+                  cupaWin();
+              };
+              modifyLocalStorage(numeInput,"",true);
               myMusic = document.getElementById("applause");
               myMusic.play();
               $("#pozeJoc").effect( "shake", {times:5}, 4000 );
@@ -522,7 +575,7 @@ function start(){
               lose_Consecutiv++;
               winConsecutiv = 0;
               butonStop = false;
-              document.getElementById("test_final").innerHTML = lose_Consecutiv;
+              document.getElementById("test_final").innerHTML = "flo";
               setTimeout(() => {litereColorate(1, x, "white", "black"); start()}, 5000);
           }else {
               linieIntreruptaString = cuvantString(linieIntrerupta);
@@ -544,6 +597,12 @@ function pauza(){
 $(".signUpButtonClass").click(function(){ //JQUERY -----------
     $(".signUpPage").slideToggle(1000);
 })
+$(".fa-question-circle").click(function(){
+    $(".regulamentClass").slideToggle(1000);
+})
+$(".butonExitRegulament").click(function(){
+    $(".regulamentClass").slideToggle(1000);
+})
 
 
 $("#radioBoy").click(function(){
@@ -552,9 +611,9 @@ $("#radioBoy").click(function(){
 $("#radioGirl").click(function(){
                 $(".imgGirlSignUp").effect( "bounce", {times:3}, 400 );
     });
-$(".litereAM").click(function(){
-            //$(this).effect( "bounce", {direction: "left", times:3}, 400 );
-        });
+
+
+
 
      </script>
   </body>

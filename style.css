@@ -8,7 +8,7 @@ body {
 }
 
 
-.signUpPage{
+.signUpPage, .regulamentClass{
   width: 780px;
   height: 420px;
   margin-left: auto;
@@ -18,14 +18,31 @@ body {
   display: none;
   position: absolute;
   z-index: 11;
-  background: lightpink;
+  background: lightblue;
   border: 1px solid green;
   text-align: center;
 }
-.butonExit{
+.fa-question-circle, .steaguriClass{
+  margin-left: 35px;
+}
+.butonExit, .butonExitRegulament{
   float: right;
   height: 25px;
   width: 25px
+}
+.regulamentClass{
+  text-align: left;
+}
+.textPre{
+  font-weight: bold;
+  font-size: 20px;
+  background: lightblue;
+}
+.steaguri{
+  height: 25px;
+}
+.fas, .steaguriClass{
+  float: left;
 }
 .signUpCreateForm{
   margin-top: 150px;
@@ -77,36 +94,14 @@ body {
   margin-left: 10%;
   margin-right: 10%;
 }
-
-.regulament{
-  position: absolute;
-  right: 12%;
-  top: 7%;
-}
-.regulament .spanRegulament {
-  visibility: hidden;
-  height: 200px;
-  width: 150px;
-  position: absolute;
-  z-index: 10;
-  right: 60px;
-  font-weight: normal;
-  font-size: 15px;
-  background: black;
-  color: white;
-}
-.regulament:hover .spanRegulament {
-  visibility: visible;
-}
 .fas{
   font-size: 25px;
 }
 
-
 .classScor{
-  top: 2%;
+  top: 8%;
   position: absolute;
-  left: 45%;
+  right: 12%
 }
 .scor{
   float: left;
@@ -116,7 +111,6 @@ body {
 .scorAct{
   margin-left: 20px;
 }
-
 
 #topBlock {
   height: 18ex;
