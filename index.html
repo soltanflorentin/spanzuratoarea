@@ -65,7 +65,7 @@
   <abbr title="Volume On/Off"><i id="onOff" class="volumeOnOff fas fa-volume-up" onclick="volumeOff()"></i></abbr>
   <abbr title="Not available yet"><div class="steaguriClass">
             <img class="steaguri steagRo"src="ro_flag.png" alt="ro">
-            <img class="steaguri steagEng"src="eng_flag.jpg" alt="eng">
+            <img class="steaguri steagEng"src="eng_flag.png" alt="eng">
           </div></abbr>
 
       </div>
@@ -256,7 +256,7 @@ function localStorageScoreExtract(name,score){ //name este nume user,  score=2 p
 };
 
 function verifica(x){
-      var diverse = ["x"];//["masina","aeroport","avion","copac","prieten","printesa","apartament","frunze","patinuar","bicicleta","trotineta","calculator","ecran","gradinita","escavator","parfum"];
+      var diverse = ["masina","aeroport","avion","copac","prieten","printesa","apartament","frunze","patinuar","bicicleta","trotineta","calculator","ecran","gradinita","escavator","parfum"];
       var orase = ["bucuresti","londra","brasov","mangalia","constanta","sibiu","braila","galati","paris","dubai","abudabi","roma","milano","miami","sydney"];
       var tari = ["italia","franta","romania","anglia","korea","china","japonia","america","germania","rusia","bulgaria","turcia","spania","mexic","argentina","norvegia","ungaria","moldova","serbia","ucraina","australia"];
       var nume = ["florentin","raluca","calin","elena","stefania","roxana","maria","antonia","elizabeta","george","razvan","tudor","ioana","cristi","adrian","delia","miruna","matei","sebastian","patrik","ionut","sorin","vasile","sara","mihai","mihaela","madalina","cristina"];
@@ -405,6 +405,13 @@ function nume_start(){
               document.getElementById("cadranJoc").style.background= "lightpink";
               document.documentElement.style.setProperty('--culoareUser', '#FF0000');
              }
+    else if (name === "LISA") {
+              document.getElementById('pozProfil').src="lisa.jpeg";
+              document.getElementById('emoji_sex').src="emoji_girl.png";
+              document.getElementById("cadranJoc").style.background= "lightpink";
+             document.documentElement.style.setProperty('--culoareUser', '#FF0000');
+            }
+
     gender = localStorageScoreExtract(numeInput,3);
     if (gender === "girl") {
       document.getElementById('emoji_sex').src="emoji_girl.png";
