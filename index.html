@@ -410,6 +410,12 @@ function nume_start(){
               document.getElementById("cadranJoc").style.background= "lightpink";
              document.documentElement.style.setProperty('--culoareUser', '#FF0000');
             }
+    else if (name === "ALETOBBY") {
+              document.getElementById('pozProfil').src="ale.jpeg";
+              document.getElementById('emoji_sex').src="emoji_girl.png";
+              document.getElementById("cadranJoc").style.background= "lightpink";
+             document.documentElement.style.setProperty('--culoareUser', '#FF0000');
+            }
 
     gender = localStorageScoreExtract(numeInput,3);
     if (gender === "girl") {
